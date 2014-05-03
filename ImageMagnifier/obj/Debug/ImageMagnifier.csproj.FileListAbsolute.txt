@@ -1,0 +1,8 @@
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\Sample\ImageMagnifier\bin\Debug\ImageMagnifier.dll
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\Sample\ImageMagnifier\bin\Debug\ImageMagnifier.pdb
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\Sample\ImageMagnifier\obj\Debug\ImageMagnifier.dll
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\Sample\ImageMagnifier\obj\Debug\ImageMagnifier.pdb
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\ImageMagnifier\bin\Debug\ImageMagnifier.dll
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\ImageMagnifier\bin\Debug\ImageMagnifier.pdb
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\ImageMagnifier\obj\Debug\ImageMagnifier.dll
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\ImageMagnifier\obj\Debug\ImageMagnifier.pdb

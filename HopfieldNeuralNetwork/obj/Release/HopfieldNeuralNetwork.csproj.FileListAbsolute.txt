@@ -1,0 +1,4 @@
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\HopfieldNeuralNetwork\bin\Release\HopfieldNeuralNetwork.dll
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\HopfieldNeuralNetwork\bin\Release\HopfieldNeuralNetwork.pdb
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\HopfieldNeuralNetwork\obj\Release\HopfieldNeuralNetwork.dll
+F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\HopfieldNeuralNetwork\obj\Release\HopfieldNeuralNetwork.pdb

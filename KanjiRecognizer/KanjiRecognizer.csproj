@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2CF52FFA-25AA-4D79-B775-C119FE446B0E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KanjiRecognizer</RootNamespace>
+    <AssemblyName>KanjiOCR</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmFailRecog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFailRecog.Designer.cs">
+      <DependentUpon>frmFailRecog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmShowKanji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmShowKanji.Designer.cs">
+      <DependentUpon>frmShowKanji.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddNoise.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddNoise.designer.cs">
+      <DependentUpon>frmAddNoise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCreanteNN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCreanteNN.Designer.cs">
+      <DependentUpon>frmCreanteNN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTeachKanji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTeachKanji.Designer.cs">
+      <DependentUpon>frmTeachKanji.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\ImageAPI.cs" />
+    <Compile Include="Source\NeuralNetworkAPI.cs" />
+    <Compile Include="Source\Kanji.cs" />
+    <EmbeddedResource Include="frmFailRecog.resx">
+      <DependentUpon>frmFailRecog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShowKanji.resx">
+      <DependentUpon>frmShowKanji.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddNoise.resx">
+      <DependentUpon>frmAddNoise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCreanteNN.resx">
+      <DependentUpon>frmCreanteNN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTeachKanji.resx">
+      <DependentUpon>frmTeachKanji.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HopfieldNeuralNetwork\HopfieldNeuralNetwork.csproj">
+      <Project>{F0C99F98-B6BF-4488-A0D8-533FAAC66183}</Project>
+      <Name>HopfieldNeuralNetwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageMagnifier\ImageMagnifier.csproj">
+      <Project>{4A5046E9-F9FC-40E4-B81D-49B3DE45E6B7}</Project>
+      <Name>ImageMagnifier</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
