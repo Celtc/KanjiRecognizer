@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label_nCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 18</value>
+    <value>12, 18</value>
   </data>
   <data name="label_nCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -147,10 +147,10 @@
     <value>5</value>
   </data>
   <data name="textBox_nCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>118, 15</value>
+    <value>130, 15</value>
   </data>
   <data name="textBox_nCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 20</value>
+    <value>135, 20</value>
   </data>
   <data name="textBox_nCount.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -172,13 +172,13 @@
     <value>4</value>
   </data>
   <data name="button_cancelFRM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 150</value>
+    <value>151, 79</value>
   </data>
   <data name="button_cancelFRM.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
   <data name="button_cancelFRM.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="button_cancelFRM.Text" xml:space="preserve">
     <value>Cancelar</value>
@@ -199,7 +199,7 @@
     <value>NoControl</value>
   </data>
   <data name="button_createNN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>65, 150</value>
+    <value>69, 79</value>
   </data>
   <data name="button_createNN.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -232,54 +232,68 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>294, 185</value>
+    <value>294, 112</value>
   </data>
-  <data name="richTextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 41</value>
-  </data>
-  <data name="richTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>220, 96</value>
-  </data>
-  <data name="richTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>Habilitar el aprendizaje a través de hashing. Esta opción aumentará la cantidad de patrones reconocibles al aprender códigos hash generados a partir de la imagen, incrementando la ortogonalidad de los patrones. Pero el reconocimiento se limitará a imágenes exactamente iguales a las aprendidas.</value>
-  </data>
-  <data name="&gt;&gt;richTextBox1.Name" xml:space="preserve">
-    <value>richTextBox1</value>
-  </data>
-  <data name="&gt;&gt;richTextBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;richTextBox1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;richTextBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="checkBox_learnHashes.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label_gMethod.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="checkBox_learnHashes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 41</value>
+  <data name="label_gMethod.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
   </data>
-  <data name="checkBox_learnHashes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>15, 14</value>
+  <data name="label_gMethod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 44</value>
   </data>
-  <data name="checkBox_learnHashes.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="label_gMethod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 13</value>
   </data>
-  <data name="&gt;&gt;checkBox_learnHashes.Name" xml:space="preserve">
-    <value>checkBox_learnHashes</value>
+  <data name="label_gMethod.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="&gt;&gt;checkBox_learnHashes.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label_gMethod.Text" xml:space="preserve">
+    <value>Generación del patrón</value>
   </data>
-  <data name="&gt;&gt;checkBox_learnHashes.Parent" xml:space="preserve">
+  <metadata name="toolTip_gMethod.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>218, 17</value>
+  </metadata>
+  <data name="label_gMethod.ToolTip" xml:space="preserve">
+    <value>Normal: El patrón sera generado a partir del contenido de la imagen, una vez escalada para
+que coincida en cantidad de pixeles a la cantidad de neuronas.
+
+Hashing: Este método aumentará la cantidad de patrones reconocibles al aprender códigos
+hash generados a partir de la imagen, incrementando la ortogonalidad de los patrones. Pero
+el reconocimiento se limitará a imágenes exactamente iguales a las aprendidas.</value>
+  </data>
+  <data name="&gt;&gt;label_gMethod.Name" xml:space="preserve">
+    <value>label_gMethod</value>
+  </data>
+  <data name="&gt;&gt;label_gMethod.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_gMethod.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;checkBox_learnHashes.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;label_gMethod.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="comboBox_gMethod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>130, 41</value>
+  </data>
+  <data name="comboBox_gMethod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 21</value>
+  </data>
+  <data name="comboBox_gMethod.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;comboBox_gMethod.Name" xml:space="preserve">
+    <value>comboBox_gMethod</value>
+  </data>
+  <data name="&gt;&gt;comboBox_gMethod.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox_gMethod.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;comboBox_gMethod.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
@@ -293,6 +307,12 @@
   </data>
   <data name="&gt;&gt;errorProvider_frmCreateNN.Type" xml:space="preserve">
     <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolTip_gMethod.Name" xml:space="preserve">
+    <value>toolTip_gMethod</value>
+  </data>
+  <data name="&gt;&gt;toolTip_gMethod.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmCreanteNN</value>

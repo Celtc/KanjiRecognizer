@@ -23,6 +23,8 @@ namespace KanjiRecognizer
             //Carga el valor por defecto
             NCount = int.Parse(KanjiRecognizer.Properties.Resources.DefaultNumberOfNeurons);
             textBox_nCount.Text = KanjiRecognizer.Properties.Resources.DefaultNumberOfNeurons;
+            comboBox_gMethod.DataSource = Enum.GetValues(typeof(NeuralNetworkAPI.LearningMethod));
+            comboBox_gMethod.SelectedIndex = 0;
         }
 
         private void textBox_nCount_KeyDown(object sender, KeyEventArgs e)
@@ -46,8 +48,14 @@ namespace KanjiRecognizer
             //Crea la red
             try
             {
+                //Metodo de generacion de patrones
+                NeuralNetworkAPI.LearningMethod gMethod;
+                Enum.TryParse<NeuralNetworkAPI.LearningMethod>(comboBox_gMethod.SelectedValue.ToString(), out gMethod); 
+
+                //Instancia y crea la red
                 var nnAPI = new NeuralNetworkAPI();
-                nnAPI.CreateNN(NCount, null, this.checkBox_learnHashes.Checked);
+                nnAPI.CreateNN(NCount, null, gMethod);
+
                 this.ReturnNN = nnAPI;
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }

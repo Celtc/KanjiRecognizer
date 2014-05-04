@@ -35,8 +35,9 @@
             this.button_cancelFRM = new System.Windows.Forms.Button();
             this.button_createNN = new System.Windows.Forms.Button();
             this.errorProvider_frmCreateNN = new System.Windows.Forms.ErrorProvider(this.components);
-            this.checkBox_learnHashes = new System.Windows.Forms.CheckBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.comboBox_gMethod = new System.Windows.Forms.ComboBox();
+            this.label_gMethod = new System.Windows.Forms.Label();
+            this.toolTip_gMethod = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_frmCreateNN)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,17 +73,27 @@
             // 
             this.errorProvider_frmCreateNN.ContainerControl = this;
             // 
-            // checkBox_learnHashes
+            // comboBox_gMethod
             // 
-            resources.ApplyResources(this.checkBox_learnHashes, "checkBox_learnHashes");
-            this.checkBox_learnHashes.Name = "checkBox_learnHashes";
-            this.checkBox_learnHashes.UseVisualStyleBackColor = true;
+            this.comboBox_gMethod.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_gMethod, "comboBox_gMethod");
+            this.comboBox_gMethod.Name = "comboBox_gMethod";
             // 
-            // richTextBox1
+            // label_gMethod
             // 
-            resources.ApplyResources(this.richTextBox1, "richTextBox1");
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
+            resources.ApplyResources(this.label_gMethod, "label_gMethod");
+            this.label_gMethod.Name = "label_gMethod";
+            this.toolTip_gMethod.SetToolTip(this.label_gMethod, resources.GetString("label_gMethod.ToolTip"));
+            // 
+            // toolTip_gMethod
+            // 
+            this.toolTip_gMethod.AutoPopDelay = 32766;
+            this.toolTip_gMethod.InitialDelay = 200;
+            this.toolTip_gMethod.IsBalloon = true;
+            this.toolTip_gMethod.ReshowDelay = 100;
+            this.toolTip_gMethod.ShowAlways = true;
+            this.toolTip_gMethod.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip_gMethod.ToolTipTitle = "Métodos de generación de patrones";
             // 
             // frmCreanteNN
             // 
@@ -92,17 +103,15 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.CancelButton = this.button_cancelFRM;
             this.ControlBox = false;
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.checkBox_learnHashes);
+            this.Controls.Add(this.label_gMethod);
+            this.Controls.Add(this.comboBox_gMethod);
             this.Controls.Add(this.button_createNN);
             this.Controls.Add(this.button_cancelFRM);
             this.Controls.Add(this.textBox_nCount);
             this.Controls.Add(this.label_nCount);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmCreanteNN";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmCreanteNN_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_frmCreateNN)).EndInit();
             this.ResumeLayout(false);
@@ -117,7 +126,8 @@
         private System.Windows.Forms.Button button_cancelFRM;
         private System.Windows.Forms.Button button_createNN;
         private System.Windows.Forms.ErrorProvider errorProvider_frmCreateNN;
-        private System.Windows.Forms.CheckBox checkBox_learnHashes;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label_gMethod;
+        private System.Windows.Forms.ComboBox comboBox_gMethod;
+        private System.Windows.Forms.ToolTip toolTip_gMethod;
     }
 }
