@@ -35,6 +35,8 @@
             this.button_cancelFRM = new System.Windows.Forms.Button();
             this.button_createNN = new System.Windows.Forms.Button();
             this.errorProvider_frmCreateNN = new System.Windows.Forms.ErrorProvider(this.components);
+            this.checkBox_learnHashes = new System.Windows.Forms.CheckBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_frmCreateNN)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,6 +72,18 @@
             // 
             this.errorProvider_frmCreateNN.ContainerControl = this;
             // 
+            // checkBox_learnHashes
+            // 
+            resources.ApplyResources(this.checkBox_learnHashes, "checkBox_learnHashes");
+            this.checkBox_learnHashes.Name = "checkBox_learnHashes";
+            this.checkBox_learnHashes.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            resources.ApplyResources(this.richTextBox1, "richTextBox1");
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            // 
             // frmCreanteNN
             // 
             this.AcceptButton = this.button_createNN;
@@ -78,6 +92,8 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.CancelButton = this.button_cancelFRM;
             this.ControlBox = false;
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.checkBox_learnHashes);
             this.Controls.Add(this.button_createNN);
             this.Controls.Add(this.button_cancelFRM);
             this.Controls.Add(this.textBox_nCount);
@@ -101,5 +117,7 @@
         private System.Windows.Forms.Button button_cancelFRM;
         private System.Windows.Forms.Button button_createNN;
         private System.Windows.Forms.ErrorProvider errorProvider_frmCreateNN;
+        private System.Windows.Forms.CheckBox checkBox_learnHashes;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

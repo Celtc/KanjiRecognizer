@@ -61,7 +61,7 @@ namespace KanjiRecognizer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1600.
+        ///   Looks up a localized string similar to 400.
         /// </summary>
         internal static string DefaultNumberOfNeurons {
             get {

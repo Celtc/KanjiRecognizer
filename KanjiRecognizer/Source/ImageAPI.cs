@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Security.Cryptography;
+using System.Drawing.Drawing2D;
+using System.Collections;
 
 namespace KanjiRecognizer.Source
 {
@@ -53,6 +55,9 @@ namespace KanjiRecognizer.Source
             Bitmap resultImage = new Bitmap(width, height);
             using (Graphics graph = Graphics.FromImage(resultImage))
             {
+                graph.SmoothingMode = SmoothingMode.HighQuality;
+                graph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graph.PixelOffsetMode = PixelOffsetMode.HighQuality;
                 graph.DrawImage(image, 0, 0, width, height);
             }
             return resultImage;
@@ -94,10 +99,10 @@ namespace KanjiRecognizer.Source
         }
 
         /// <summary>
-        /// Genera un hash a partir del contenido de una imagen.
+        /// Genera un hash SHA1 a partir del contenido de una imagen.
         /// </summary>
         /// <param name="image">Imagen fuente</param>
-        public static string GenerateHashFromImage(Image image)
+        public static string GenerateSHA1HashFromImage(Image image)
         {
             string hash = string.Empty;
             try
@@ -117,6 +122,73 @@ namespace KanjiRecognizer.Source
             catch { }
 
             return hash;
+        }
+
+        /// <summary>
+        /// Genera un hash basado en SHA512 de largo definido a partir del contenido de una imagen.
+        /// </summary>
+        /// <param name="image">Imagen fuente</param>
+        public static BitArray GenerateBitHashFromImage(Image image, int size)
+        {
+            //Hash de salida (Vector del tamaño deseado inicializado en 0)
+            int sizeInBytes = (int) Math.Ceiling(size / 8f);
+            byte[] hash = Enumerable.Repeat((byte) 0x00, sizeInBytes).ToArray();
+
+            //Extrae el byteArray de la imagen
+            byte[] imageBytes = ByteArrayFromImage(image);
+
+            //Genera un hash de 192 bytes a base de aplicar el SHA512
+            byte[] SHAComposedHash = new byte[192];
+            using (var sha512 = new SHA512Cng())
+            {
+                //Hash de los bytes de la imagen
+                Buffer.BlockCopy(sha512.ComputeHash(imageBytes), 0, SHAComposedHash, 0, 64);
+
+                //Hash de los bytes invertidos de la imagen
+                byte[] notImageBytes = new byte[imageBytes.Length];
+                for (int i = 0; i < imageBytes.Length; i++)
+                    notImageBytes[i] = (byte)~imageBytes[i];
+                Buffer.BlockCopy(sha512.ComputeHash(notImageBytes), 0, SHAComposedHash, 64, 64);
+
+                //Hash de los bytes del mismo hash
+                byte[] currentHash = new byte[128];
+                Buffer.BlockCopy(SHAComposedHash, 0, currentHash, 0, 128);
+                Buffer.BlockCopy(sha512.ComputeHash(currentHash), 0, SHAComposedHash, 128, 64);
+            }
+
+            //Alarga o reduce el largo del hash
+            int iterations = 0;
+            while (sizeInBytes > iterations * 192)
+            {
+                int toCopy = sizeInBytes - iterations * 192;
+                Buffer.BlockCopy(SHAComposedHash, 0, hash, iterations++ * 192, Math.Min(192, toCopy));
+            }
+
+            //Recorta los bits sobrantes
+            BitArray allBits = new BitArray(hash);
+            BitArray finalBits = new BitArray(size);
+            for (int i = 0; i < size; i++)
+            {
+                finalBits.Set(i, allBits.Get(i));
+            }
+
+            return finalBits;
+        }
+        
+        /// <summary>
+        /// Genera un byte array con el contenido raw de la imagen.
+        /// </summary>
+        /// <param name="image">Imagen fuente</param>
+        private static byte[] ByteArrayFromImage (Image image)
+        {
+            byte[] byteArray = new byte[0];
+            using (MemoryStream stream = new MemoryStream())
+            {
+                image.Save(stream, ImageFormat.Bmp);
+                byteArray = stream.ToArray();
+                stream.Close();
+            }
+            return byteArray;
         }
     }
 }

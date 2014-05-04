@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\CRC.cs" />
     <Compile Include="Source\ImageAPI.cs" />
     <Compile Include="Source\NeuralNetworkAPI.cs" />
     <Compile Include="Source\Kanji.cs" />

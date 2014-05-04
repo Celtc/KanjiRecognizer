@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Windows;
 
 using HopfieldNeuralNetwork;
+using System.Collections;
 
 namespace KanjiRecognizer.Source
 {
-    class NeuralNetworkAPI
+    public class NeuralNetworkAPI
     {
         public void TeachKanji(Image sourceImage, string name, string description)
         {
@@ -17,39 +18,74 @@ namespace KanjiRecognizer.Source
         }
         public void TeachKanji(Kanji kanji)
         {
-            //Convierte la imagen a bitmap
-            Bitmap sourceBitmap = ImageAPI.AlltoBMP(kanji.sourceImage);
-
-            //Establece el valor de activación de las neuronas
-            int activationValue = Math.Abs((int)(Color.Black.ToArgb() / 2));
-
-            //Extrae el patron y su bitmap
-            Bitmap processedBitmap;
-            List<Neuron> pattern = patternFromBitmap(sourceBitmap, activationValue, out processedBitmap);
-
-            //Guarda el kanji en la lista de aprendidos si no existe
-            try
+            //Dependiendo del modo obj de aprendizaje
+            string accessHash = string.Empty;
+            List<Neuron> pattern = null;
+            if (learnHashes)
             {
-                learnedKanjis.Add(ImageAPI.GenerateHashFromImage(processedBitmap), kanji);
+                //Extrae un hash de tantos bits como neuronas a partir de la imagen
+                BitArray bitHash = ImageAPI.GenerateBitHashFromImage(kanji.sourceImage, NeuralNetwork.NeuronsCount);
+                
+                //Extrae el patron y su bitmap
+                Bitmap processedBitmap;
+                pattern = patternFromBithash(bitHash, out processedBitmap);
+                
+                //Genera el hash a partir del bitmap de salida
+                accessHash = ImageAPI.GenerateSHA1HashFromImage(processedBitmap);
             }
-            catch { }
+            else
+            {
+                //Establece el valor de activación de las neuronas
+                int activationValue = Math.Abs((int)(Color.Black.ToArgb() / 2));
 
-            //Enseña el patron
-            NeuralNetwork.AddPattern(pattern);
+                //Convierte la imagen a bitmap
+                Bitmap sourceBitmap = ImageAPI.AlltoBMP(kanji.sourceImage);
+
+                //Extrae el patron y su bitmap
+                Bitmap processedBitmap;
+                pattern = patternFromBitmap(sourceBitmap, activationValue, out processedBitmap);
+                
+                //Genera el hash a partir del bitmap de salida
+                accessHash = ImageAPI.GenerateSHA1HashFromImage(processedBitmap);
+            }            
+
+            //Revisa que no exisitiera el kanji ya en la base de datos
+            if (!learnedKanjis.ContainsKey(accessHash))
+            {
+                //Guarda
+                learnedKanjis.Add(accessHash, kanji);
+
+                //Enseña el patron
+                NeuralNetwork.AddPattern(pattern);
+            }   
         }
 
-
+        //Intenta reconocer la imagen dada a traves de algunos de los kanjis aprendidos
         public Kanji RecognizeKanji(Image sourceImage, out Bitmap resultBitmap)
         {
-            //Convierte la imagen a bitmap
-            Bitmap sourceBitmap = ImageAPI.AlltoBMP(sourceImage);
+            //Dependiendo del modo obj de aprendizaje
+            List<Neuron> initialState;
+            if (learnHashes)
+            {
+                //Extrae un hash de tantos bits como neuronas a partir de la imagen
+                BitArray bitHash = ImageAPI.GenerateBitHashFromImage(sourceImage, NeuralNetwork.NeuronsCount);
 
-            //Establece el valor de activación de las neuronas
-            int activationValue = Math.Abs((int)(Color.Black.ToArgb() / 2));
+                //Extrae el patron
+                Bitmap processedBitmap;
+                initialState = patternFromBithash(bitHash, out processedBitmap);
+            }
+            else
+            {
+                //Convierte la imagen a bitmap
+                Bitmap sourceBitmap = ImageAPI.AlltoBMP(sourceImage);
 
-            //Extrae el patron a analizar, que sera el estado inicial
-            Bitmap outBitmap;
-            List<Neuron> initialState = patternFromBitmap(sourceBitmap, activationValue, out outBitmap);
+                //Establece el valor de activación de las neuronas
+                int activationValue = Math.Abs((int)(Color.Black.ToArgb() / 2));
+
+                //Extrae el patron a analizar, que sera el estado inicial
+                Bitmap outBitmap;
+                initialState = patternFromBitmap(sourceBitmap, activationValue, out outBitmap);
+            }    
             
             //Diagnostica el patron
             NeuralNetwork.Run(initialState, false);
@@ -61,7 +97,7 @@ namespace KanjiRecognizer.Source
             try
             {
                 string learnedHash = learnedKanjis.Keys.ElementAt(0);
-                string resultingHash = ImageAPI.GenerateHashFromImage(resultBitmap);
+                string resultingHash = ImageAPI.GenerateSHA1HashFromImage(resultBitmap);
                 recognizedKanji = learnedKanjis[resultingHash];
             }
             catch { }
@@ -70,27 +106,16 @@ namespace KanjiRecognizer.Source
         }
 
         //Crea la red con la cantidad de neuronas especificadas
-        public void CreateNN(int neurons, EnergyChangedHandler energyHandle = null)
+        public void CreateNN(int neurons, EnergyChangedHandler energyHandle = null, bool learnHashes = false)
         {
             //Crea la red
             NeuralNetwork = new NeuralNetwork(neurons);
             if (energyHandle != null)
                 NeuralNetwork.EnergyChanged += new EnergyChangedHandler(energyHandle);
 
-            //Crea una lista vacia
-            learnedKanjis = new Dictionary<string, Kanji>();
-        }
-
-        //Establece una red neuronal externa
-        public void SetNN(NeuralNetwork neuralNetwork, EnergyChangedHandler energyHandle = null)
-        {
-            //Establece la red
-            this.NeuralNetwork = neuralNetwork;
-            if (energyHandle != null)
-                neuralNetwork.EnergyChanged += new EnergyChangedHandler(energyHandle);
-
-            //Crea una lista vacia
-            learnedKanjis = new Dictionary<string, Kanji>();
+            //Instancia las variables
+            this.learnedKanjis = new Dictionary<string, Kanji>();
+            this.learnHashes = learnHashes;
         }
 
         //Crea el patron segun la cantidad de neuronas de la red y usando el valor de activacion calculado
@@ -126,6 +151,35 @@ namespace KanjiRecognizer.Source
             return pattern;
         }
 
+        //Crea el patron a partir de un bithash. La cantidad de bits debe coincidir con la cantidad de neuronas.
+        private List<Neuron> patternFromBithash(BitArray bithash, out Bitmap outBitmap)
+        {
+            //El patron esta formado por un conjunto de estados de las neuronas
+            List<Neuron> pattern = new List<Neuron>(NeuralNetwork.NeuronsCount);
+
+            //Crea el bitmap que se devolvera
+            Bitmap processedBitmap = new Bitmap(matrixWidth, matrixWidth);
+
+            //Establece los estados de las neuronas para cada bit
+            for (int i = 0; i < NeuralNetwork.NeuronsCount; i++)
+            {
+                Neuron neuron = new Neuron();
+                if (bithash.Get(i))
+                {
+                    processedBitmap.SetPixel(i / matrixWidth, i % matrixWidth, Color.Black);
+                    neuron.State = NeuronStates.AgainstField;
+                }
+                else
+                {
+                    processedBitmap.SetPixel(i / matrixWidth, i % matrixWidth, Color.White);
+                    neuron.State = NeuronStates.AlongField;
+                }
+                pattern.Add(neuron);
+            }
+            outBitmap = processedBitmap;
+            return pattern;
+        }
+
         //Crea un bitmap a partir de un patron. Esta sera una imagen en blanco y negro
         private Bitmap bitmapFromPattern(List<Neuron> pattern)
         {
@@ -155,7 +209,8 @@ namespace KanjiRecognizer.Source
             get { return (int) Math.Sqrt(NeuralNetwork.NeuronsCount); }
         }
 
-        //Variables
+        //Variables        
+        public bool learnHashes { get; private set; }
         private Dictionary<string, Kanji> learnedKanjis;
         public NeuralNetwork NeuralNetwork { get; private set; }
     }

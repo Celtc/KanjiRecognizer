@@ -6,10 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
-using HopfieldNeuralNetwork;
-using KanjiRecognizer.Source;
 using System.IO;
+using KanjiRecognizer.Source;
 
 namespace KanjiRecognizer
 {
@@ -24,11 +22,10 @@ namespace KanjiRecognizer
 
         private void frmMainBeta_Load(object sender, EventArgs e)
         {
-            nnAPI = new NeuralNetworkAPI();
             this.updateDisplayData();
         }
 
-        //Crea una nueva red neuronal
+        //Crea una nueva instancia de red neuronal
         private void crearNuevaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var createNNForm = new frmCreanteNN())
@@ -36,8 +33,7 @@ namespace KanjiRecognizer
                 var result = createNNForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    nnAPI.SetNN(createNNForm.ReturnNN);
-
+                    this.nnAPI = createNNForm.ReturnNN;
                     this.updateDisplayData();
                     this.patronesToolStripMenuItem.Enabled = true;
                 }

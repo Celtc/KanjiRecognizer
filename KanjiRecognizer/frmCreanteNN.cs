@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using HopfieldNeuralNetwork;
+
+using KanjiRecognizer.Source;
 
 namespace KanjiRecognizer
 {
@@ -45,7 +46,9 @@ namespace KanjiRecognizer
             //Crea la red
             try
             {
-                ReturnNN = new NeuralNetwork(NCount);
+                var nnAPI = new NeuralNetworkAPI();
+                nnAPI.CreateNN(NCount, null, this.checkBox_learnHashes.Checked);
+                this.ReturnNN = nnAPI;
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
             catch (System.OutOfMemoryException ex)
@@ -112,6 +115,6 @@ namespace KanjiRecognizer
         }
 
         private int NCount { get; set; }
-        public NeuralNetwork ReturnNN { get; private set; }
+        public NeuralNetworkAPI ReturnNN { get; private set; }
     }
 }

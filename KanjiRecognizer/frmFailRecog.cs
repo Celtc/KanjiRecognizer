@@ -21,7 +21,7 @@ namespace KanjiRecognizer
         private void frmFailRecog_Load(object sender, EventArgs e)
         {
             imNNState.ImageToMagnify = resultBmp;
-            imNNState.MagnificationCoefficient = (int)(250 / resultBmp.Width);
+            imNNState.MagnificationCoefficient = Math.Max((int)(250 / resultBmp.Width), 1);
             imNNState.Visible = false;
             imNNState.Invalidate();
 

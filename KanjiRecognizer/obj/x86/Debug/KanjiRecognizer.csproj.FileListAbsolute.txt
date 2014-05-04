@@ -15,5 +15,3 @@ F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\Ka
 F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\KanjiOCR\obj\x86\Debug\KanjiOCR.exe
 F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\KanjiOCR\obj\x86\Debug\KanjiOCR.pdb
 F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiOCR\KanjiOCR\obj\x86\Debug\KanjiRecognizer.frmAddNoise.resources
-F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Debug\KanjiOCR.exe
-F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Debug\KanjiOCR.pdb
