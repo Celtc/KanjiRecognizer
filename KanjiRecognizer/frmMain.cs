@@ -20,7 +20,7 @@ namespace KanjiRecognizer
         }
 
         //Awake
-        private void frmMainBeta_Load(object sender, EventArgs e)
+        private void frmMain_Load(object sender, EventArgs e)
         {
             this.updateDisplayData();
         }
@@ -128,6 +128,13 @@ namespace KanjiRecognizer
             if (currentImage == null)
             {
                 MessageBox.Show("Cargue una imagen a reconocer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            //Verifica la existencia de una red neuronal
+            if (nnAPI == null || nnAPI.NeuralNetwork == null)
+            {
+                MessageBox.Show("Cree una red neuronal para poder analizar la imagen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
