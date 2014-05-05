@@ -43,7 +43,7 @@ namespace KanjiRecognizer
         //Actualiza la info en el form
         private void updateDisplayData()
         {
-            if (nnAPI.NeuralNetwork != null)
+            if (nnAPI != null && nnAPI.NeuralNetwork != null)
             {
                 this.label_NN_state_data.Text = "Activa";
                 this.label_NN_energy_data.Text = nnAPI.NeuralNetwork.Energy.ToString();
