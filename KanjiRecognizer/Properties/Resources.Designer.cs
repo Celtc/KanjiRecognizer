@@ -68,5 +68,15 @@ namespace KanjiRecognizer.Properties {
                 return ResourceManager.GetString("DefaultNumberOfNeurons", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon RecognizeKanji {
+            get {
+                object obj = ResourceManager.GetObject("RecognizeKanji", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

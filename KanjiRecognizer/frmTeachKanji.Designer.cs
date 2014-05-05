@@ -128,8 +128,10 @@
             // 
             // frmTeachKanji
             // 
+            this.AcceptButton = this.button_accept;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.button_cancel;
             this.ClientSize = new System.Drawing.Size(334, 518);
             this.ControlBox = false;
             this.Controls.Add(this.textBox_name);

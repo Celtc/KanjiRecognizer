@@ -112,6 +112,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MinimumSize = new System.Drawing.Size(280, 140);
             this.Name = "frmFailRecog";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kanji No Reconocido";
             this.Load += new System.EventHandler(this.frmFailRecog_Load);

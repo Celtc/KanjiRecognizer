@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("KanjiOCR")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Kanji Recognizer")]
+[assembly: AssemblyDescription("Identificador de kanjis a través del uso de una RNA de Hopfield.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("KanjiOCR")]
+[assembly: AssemblyCompany("UTN FRBA")]
+[assembly: AssemblyProduct("KanjiRecognizer")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

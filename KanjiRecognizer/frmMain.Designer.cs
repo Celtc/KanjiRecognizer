@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.groupBox_NN_Info = new System.Windows.Forms.GroupBox();
             this.label_NN_state = new System.Windows.Forms.Label();
             this.label_NN_patterns_data = new System.Windows.Forms.Label();
@@ -50,8 +51,8 @@
             this.button_runDynamics = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox_loadedKanji = new System.Windows.Forms.GroupBox();
-            this.openMultipleFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.button_addNoise = new System.Windows.Forms.Button();
+            this.openMultipleFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox_NN_Info.SuspendLayout();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_loadedImage)).BeginInit();
@@ -180,22 +181,22 @@
             // createNNToolStripMenuItem
             // 
             this.createNNToolStripMenuItem.Name = "createNNToolStripMenuItem";
-            this.createNNToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.createNNToolStripMenuItem.Text = "Crear nueva ANN";
+            this.createNNToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.createNNToolStripMenuItem.Text = "Crear nueva RNA";
             this.createNNToolStripMenuItem.Click += new System.EventHandler(this.crearNuevaToolStripMenuItem_Click);
             // 
             // exportarANNToolStripMenuItem
             // 
             this.exportarANNToolStripMenuItem.Enabled = false;
             this.exportarANNToolStripMenuItem.Name = "exportarANNToolStripMenuItem";
-            this.exportarANNToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.exportarANNToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.exportarANNToolStripMenuItem.Text = "Importar...";
             // 
             // exportarToolStripMenuItem
             // 
             this.exportarToolStripMenuItem.Enabled = false;
             this.exportarToolStripMenuItem.Name = "exportarToolStripMenuItem";
-            this.exportarToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.exportarToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.exportarToolStripMenuItem.Text = "Exportar...";
             // 
             // patronesToolStripMenuItem
@@ -277,12 +278,6 @@
             this.groupBox_loadedKanji.TabStop = false;
             this.groupBox_loadedKanji.Text = "Kanji a Reconocer";
             // 
-            // openMultipleFileDialog
-            // 
-            this.openMultipleFileDialog.FileName = "openFileDialog";
-            this.openMultipleFileDialog.Filter = "Imagenes|*.jpg; *.png; *.bmp";
-            this.openMultipleFileDialog.Multiselect = true;
-            // 
             // button_addNoise
             // 
             this.button_addNoise.Location = new System.Drawing.Point(274, 47);
@@ -293,6 +288,12 @@
             this.button_addNoise.UseVisualStyleBackColor = true;
             this.button_addNoise.Click += new System.EventHandler(this.button_addNoise_Click);
             // 
+            // openMultipleFileDialog
+            // 
+            this.openMultipleFileDialog.FileName = "openFileDialog";
+            this.openMultipleFileDialog.Filter = "Imagenes|*.jpg; *.png; *.bmp";
+            this.openMultipleFileDialog.Multiselect = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +303,7 @@
             this.Controls.Add(this.button_runDynamics);
             this.Controls.Add(this.groupBox_NN_Info);
             this.Controls.Add(this.menuStrip);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.MinimumSize = new System.Drawing.Size(410, 485);
             this.Name = "frmMain";

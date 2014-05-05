@@ -75,6 +75,7 @@
             // 
             // comboBox_gMethod
             // 
+            this.comboBox_gMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_gMethod.FormattingEnabled = true;
             resources.ApplyResources(this.comboBox_gMethod, "comboBox_gMethod");
             this.comboBox_gMethod.Name = "comboBox_gMethod";
