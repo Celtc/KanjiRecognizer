@@ -12,22 +12,26 @@ namespace KanjiRecognizer
 {
     public partial class frmAddNoise : Form
     {
+        //Buidler
         public frmAddNoise(Image sourceImage)
         {
             InitializeComponent();
             this.image = sourceImage;
         }
 
+        //Awake
         private void frmAddDistortion_Load(object sender, EventArgs e)
         {
             distortionLevel = 10f;
         }
 
+        //Evento de cambio en el valor del slide
         private void nudDistortionLevel_ValueChanged(object sender, EventArgs e)
         {
             distortionLevel = (float) nudDistortionLevel.Value;
         }
 
+        //Evento de Click en el btn de aceptar
         private void button_accept_Click(object sender, EventArgs e)
         {
             //Para agregar distorsion pasa la imagen a bitmap
@@ -50,7 +54,7 @@ namespace KanjiRecognizer
             image = bitmap;
         }
 
-        //Obtiene un color random
+        //Genera un color random
         private Color GetRandomColour(bool monochrome)
         {
             Color resultColor;
@@ -72,6 +76,7 @@ namespace KanjiRecognizer
             return resultColor;
         }
 
+        //Variables
         public Image image { get; private set; }
         private float distortionLevel;
         private readonly Random rand = new Random();

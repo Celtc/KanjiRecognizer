@@ -13,13 +13,13 @@ namespace KanjiRecognizer
 {
     public partial class frmMain : Form
     {
-        private NeuralNetworkAPI nnAPI;
-
+        //Builder
         public frmMain()
         {
             InitializeComponent();
         }
 
+        //Awake
         private void frmMainBeta_Load(object sender, EventArgs e)
         {
             this.updateDisplayData();
@@ -166,6 +166,8 @@ namespace KanjiRecognizer
             }
         }
 
-        private Image currentImage;     
+        //Variables
+        private Image currentImage;
+        private NeuralNetworkAPI nnAPI;
     }
 }

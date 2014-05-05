@@ -13,12 +13,14 @@ namespace KanjiRecognizer
 {
     public partial class frmShowKanji : Form
     {
+        //Builder
         public frmShowKanji(Kanji kanji)
         {
             InitializeComponent();
             this.showingKanji = kanji;
         }
 
+        //Awake
         private void frmShowKanji_Load(object sender, EventArgs e)
         {
             this.Text = "Kanji: " + showingKanji.name;
@@ -27,6 +29,7 @@ namespace KanjiRecognizer
             this.pictureBox_kanji.Image = showingKanji.sourceImage;
         }
 
+        //Variables
         private Kanji showingKanji;
     }
 }

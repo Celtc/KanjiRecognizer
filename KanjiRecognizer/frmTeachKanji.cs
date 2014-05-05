@@ -12,6 +12,7 @@ namespace KanjiRecognizer
 {
     public partial class frmTeachKanji : Form
     {
+        //Builder
         public frmTeachKanji(Image sourceImage, string filename)
         {
             InitializeComponent();
@@ -19,6 +20,7 @@ namespace KanjiRecognizer
             this.filename = filename;
         }
 
+        //Awake
         private void frmTeachKanji_Load(object sender, EventArgs e)
         {
             this.label_filename.Text = filename;
@@ -27,16 +29,19 @@ namespace KanjiRecognizer
             this.textBox_name.Select(0, this.textBox_name.Text.Length);
         }
 
+        //Getter de la descripción
         public string description
         {
             get { return this.richTextBox_desc.Text; }
         }
 
+        //Getter del nombre
         public string name
         {
             get { return this.textBox_name.Text; }
         }
 
+        //Variables
         private Image sourceImg;
         private string filename;
     }

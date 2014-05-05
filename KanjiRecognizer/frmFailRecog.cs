@@ -11,6 +11,7 @@ namespace KanjiRecognizer
 {
     public partial class frmFailRecog : Form
     {
+        //Builder
         public frmFailRecog(Bitmap result)
         {
             InitializeComponent();
@@ -18,6 +19,7 @@ namespace KanjiRecognizer
             showResult = false;
         }
         
+        //Awake
         private void frmFailRecog_Load(object sender, EventArgs e)
         {
             imNNState.ImageToMagnify = resultBmp;
@@ -28,6 +30,7 @@ namespace KanjiRecognizer
             this.pictureBox_icon.Image = SystemIcons.Exclamation.ToBitmap();
         }
 
+        //Conmuta entre mostrar y ocultar el bitmap representante del patrón resultante
         private void button_toggleResult_Click(object sender, EventArgs e)
         {
             showResult = !showResult;
@@ -47,6 +50,7 @@ namespace KanjiRecognizer
             }
         }
 
+        //Variables
         private Bitmap resultBmp;
         private bool showResult;
 

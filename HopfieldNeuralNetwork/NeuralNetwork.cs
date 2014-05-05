@@ -31,7 +31,7 @@ namespace HopfieldNeuralNetwork
         /// Number of patterns currently stored in interconnection matrix
         /// </summary>
         /// <value>An <typeparamref name="Int32"/> representing a number of patterns</value>
-        /// <remarks>The value of M increases every time when new pattern added via AddPattern or AddRandomPattern</remarks>
+        /// <remarks>This value increases every time when new pattern added via AddPattern or AddRandomPattern</remarks>
         public int PatternsCount { get; private set; }
         
         /// <summary>
@@ -50,7 +50,7 @@ namespace HopfieldNeuralNetwork
         public List<Neuron> Neurons { get; private set; }
 
         /// <summary>
-        /// Calculate the energy of currente network.
+        /// Calculate the energy of current network.
         /// </summary>
         private void CalculateEnergy()
         {
@@ -63,6 +63,7 @@ namespace HopfieldNeuralNetwork
         }
         
         /// <summary>
+        /// Builder.
         /// Initializes a new instance of the <seealso cref="NeuralNetwork"/> class
         /// </summary>
         /// <param name="n">Number of neurons</param>
@@ -143,6 +144,7 @@ namespace HopfieldNeuralNetwork
         /// Sets specified initial state and runs networks dynamics
         /// </summary>
         /// <param name="initialState">A list of neurons which determines an initional state</param>
+        /// <param name="triggerEnergyChange">A boolean indicating if it should trigger the energyChange event</param>
         public void Run(List<Neuron> initialState, bool triggerEnergyChange)
         {
             this.Neurons = initialState;

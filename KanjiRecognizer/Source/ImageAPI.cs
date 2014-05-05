@@ -11,10 +11,10 @@ using System.Collections;
 
 namespace KanjiRecognizer.Source
 {
-    class ImageAPI
+    public static class ImageAPI
     {
         /// <summary>
-        /// Convierte la imagen en un <typeparamref name="Bitmap"/>
+        /// Convierte la imagen en un bitmap.
         /// </summary>
         /// <param name="image">Imagen fuente</param>
         public static Bitmap AlltoBMP(Image image)
@@ -28,7 +28,7 @@ namespace KanjiRecognizer.Source
             //Revisa el formato inicial
             if (imageFormat == ImageFormat.Bmp)
             {
-                //BMP
+                //BMP: no hay necesidad de conversion
                 resultImage = image as Bitmap;
             }
             else
@@ -45,11 +45,11 @@ namespace KanjiRecognizer.Source
         }
 
         /// <summary>
-        /// Escala el <typeparamref name="Bitmap"/> a las dimensiones deseadas
+        /// Escala el bitmap a las dimensiones deseadas.
         /// </summary>
         /// <param name="image">Imagen fuente</param>
-        /// <param name="width"> <typeparamref name="Int32"/> que especifica el ancho deseado</param>
-        /// <param name="height"> <typeparamref name="Int32"/> que especifica el alto deseado</param>
+        /// <param name="width"> Ancho deseado</param>
+        /// <param name="height"> Alto deseado</param>
         public static Bitmap ResizeBitmap(Bitmap image, int width, int height)
         {
             Bitmap resultImage = new Bitmap(width, height);
@@ -126,8 +126,10 @@ namespace KanjiRecognizer.Source
 
         /// <summary>
         /// Genera un hash basado en SHA512 de largo definido a partir del contenido de una imagen.
+        /// Lo devuelve como un array de bits.
         /// </summary>
         /// <param name="image">Imagen fuente</param>
+        /// <param name="size">Largo en bits del hash</param>
         public static BitArray GenerateBitHashFromImage(Image image, int size)
         {
             //Hash de salida (Vector del tamaño deseado inicializado en 0)
@@ -156,7 +158,7 @@ namespace KanjiRecognizer.Source
                 Buffer.BlockCopy(sha512.ComputeHash(currentHash), 0, SHAComposedHash, 128, 64);
             }
 
-            //Alarga o reduce el largo del hash
+            //Completa en unidades de bytes el largo faltante
             int iterations = 0;
             while (sizeInBytes > iterations * 192)
             {

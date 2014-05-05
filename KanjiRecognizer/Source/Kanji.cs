@@ -8,6 +8,9 @@ using System.IO;
 
 namespace KanjiRecognizer.Source
 {
+    /// <summary>
+    /// Clase dedicada a almacener la imagen de un kanji junto con su data.
+    /// </summary>
     public class Kanji
     {
         public Kanji(Image image, string name, string description)

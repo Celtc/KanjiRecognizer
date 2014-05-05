@@ -13,20 +13,23 @@ namespace KanjiRecognizer
 {
     public partial class frmCreanteNN : Form
     {
+        //Builder
         public frmCreanteNN()
         {
             InitializeComponent();
         }
         
+        //Awake
         private void frmCreanteNN_Load(object sender, EventArgs e)
         {
             //Carga el valor por defecto
             NCount = int.Parse(KanjiRecognizer.Properties.Resources.DefaultNumberOfNeurons);
             textBox_nCount.Text = KanjiRecognizer.Properties.Resources.DefaultNumberOfNeurons;
-            comboBox_gMethod.DataSource = Enum.GetValues(typeof(NeuralNetworkAPI.LearningMethod));
+            comboBox_gMethod.DataSource = Enum.GetValues(typeof(NeuralNetworkAPI.GenerationMethod));
             comboBox_gMethod.SelectedIndex = 0;
         }
 
+        //Evento de KeyDown en el textbox de cantidad de neuronas
         private void textBox_nCount_KeyDown(object sender, KeyEventArgs e)
         {
             //Ignora los ENTER para el textbox
@@ -36,6 +39,7 @@ namespace KanjiRecognizer
             }
         }
 
+        //Evento de Click en el btn de crear
         private void button_createNN_Click(object sender, EventArgs e)
         {
             //Valida la cantidad de neuronas
@@ -49,8 +53,8 @@ namespace KanjiRecognizer
             try
             {
                 //Metodo de generacion de patrones
-                NeuralNetworkAPI.LearningMethod gMethod;
-                Enum.TryParse<NeuralNetworkAPI.LearningMethod>(comboBox_gMethod.SelectedValue.ToString(), out gMethod); 
+                NeuralNetworkAPI.GenerationMethod gMethod;
+                Enum.TryParse<NeuralNetworkAPI.GenerationMethod>(comboBox_gMethod.SelectedValue.ToString(), out gMethod); 
 
                 //Instancia y crea la red
                 var nnAPI = new NeuralNetworkAPI();
@@ -65,6 +69,7 @@ namespace KanjiRecognizer
             }
         }
 
+        //Evento de validación del textbox de cantidad de neuronas
         private void textBox_nCount_Validating(object sender, CancelEventArgs e)
         {
             bool error = false;
@@ -107,6 +112,7 @@ namespace KanjiRecognizer
             return;
         }
 
+        //Evento de post validación del textbox de cantidad de neuronas
         private void textBox_nCount_Validated(object sender, EventArgs e)
         {
             try
@@ -122,6 +128,7 @@ namespace KanjiRecognizer
             }
         }
 
+        //Variables
         private int NCount { get; set; }
         public NeuralNetworkAPI ReturnNN { get; private set; }
     }

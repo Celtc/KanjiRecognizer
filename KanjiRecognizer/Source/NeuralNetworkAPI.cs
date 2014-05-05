@@ -12,23 +12,33 @@ namespace KanjiRecognizer.Source
 {
     public class NeuralNetworkAPI
     {
-        //Enseña un patron a la red, el cual sera generado dependiendo el metodo elegido
+        /// <summary>
+        /// Enseña un patrón a la red, el cual será generado dependiendo el método elegido.
+        /// </summary>
+        /// <param name="sourceImage">Imagen del kanji a aprender</param>
+        /// <param name="name">Nombre del kanji</param>  
+        /// <param name="description">Descripción del kanji</param>  
         public void TeachKanji(Image sourceImage, string name, string description)
         {
             this.TeachKanji(new Kanji(sourceImage, name, description));
         }
+
+        /// <summary>
+        /// Enseña un patrón a la red, el cual será generado dependiendo el método elegido.
+        /// </summary>
+        /// <param name="kanji">Kanji a aprender</param>
         public void TeachKanji(Kanji kanji)
         {
             //Dependiendo del modo obj de aprendizaje genera el patron
             string accessHash = string.Empty;
             List<Neuron> pattern = null;
-            switch (learningMethod)
+            switch (generationMethod)
             {
-                case LearningMethod.Normal:
+                case GenerationMethod.Normal:
                     generatePattern_Normal(kanji.sourceImage, out pattern, out accessHash);
                     break;
 
-                case LearningMethod.Hashing:
+                case GenerationMethod.Hashing:
                     generatePattern_Hashing(kanji.sourceImage, out pattern, out accessHash);
                     break;
             }          
@@ -44,7 +54,12 @@ namespace KanjiRecognizer.Source
             }   
         }
 
-        //Genera el patrón a través del metodo habitual
+        /// <summary>
+        /// Genera el patrón a través del metodo habitual.
+        /// </summary>
+        /// <param name="sourceImage">Imagen a partir de la cual se generara el patrón</param>
+        /// <param name="pattern">Patrón resultante</param>
+        /// <param name="accesHash">Hash que identifica unívocamente este patrón</param>
         private void generatePattern_Normal(Image sourceImage, out List<Neuron> pattern, out string accessHash)
         {
             //Establece el valor de activación de las neuronas
@@ -63,7 +78,13 @@ namespace KanjiRecognizer.Source
             return;
         }
 
-        //Genera el patrón usando un hash generado a partir del contenido de la imagen
+        /// <summary>
+        /// Genera el patrón a través del metodo de hashing, aumentando la ortoganalidad de los patrones generados
+        /// pero limitando el reconocimiento a patrones idénticos.
+        /// </summary>
+        /// <param name="sourceImage">Imagen a partir de la cual se generara el patrón</param>
+        /// <param name="pattern">Patrón resultante</param>
+        /// <param name="accesHash">Hash que identifica unívocamente este patrón</param>
         private void generatePattern_Hashing(Image sourceImage, out List<Neuron> pattern, out string accessHash)
         {
             //Extrae un hash de tantos bits como neuronas a partir de la imagen
@@ -79,19 +100,24 @@ namespace KanjiRecognizer.Source
             return;
         }
 
-        //Intenta reconocer la imagen dada a traves de algunos de los kanjis aprendidos
+        /// <summary>
+        /// Intenta reconocer la imagen dada comparandola contra algunos de los kanjis aprendidos.
+        /// En caso de reconocer la imagen, devuelve el kanji correspondiente, sino devuelve null.
+        /// </summary>
+        /// <param name="sourceImage">Imagen a reconocer</param>
+        /// <param name="resultBitmap">Imagen devuelta por la red luego del analisis</param>
         public Kanji RecognizeKanji(Image sourceImage, out Bitmap resultBitmap)
         {
             //Dependiendo del modo obj de aprendizaje
             string accessHash = string.Empty;
             List<Neuron> initialState = null;
-            switch (learningMethod)
+            switch (generationMethod)
             {
-                case LearningMethod.Normal:
+                case GenerationMethod.Normal:
                     generatePattern_Normal(sourceImage, out initialState, out accessHash);
                     break;
 
-                case LearningMethod.Hashing:
+                case GenerationMethod.Hashing:
                     generatePattern_Hashing(sourceImage, out initialState, out accessHash);
                     break;
             }  
@@ -114,8 +140,13 @@ namespace KanjiRecognizer.Source
             return recognizedKanji;
         }
 
-        //Crea la red con la cantidad de neuronas especificadas
-        public void CreateNN(int neurons, EnergyChangedHandler energyHandle = null, LearningMethod method = LearningMethod.Normal)
+        /// <summary>
+        /// Crea la red neuronal artificial con la cantidad de neuronas especificadas.
+        /// </summary>
+        /// <param name="neurons">Cantidad de neuronas con que sera creada la red</param>
+        /// <param name="energyHandle">Handler para el evento de cambio de energia del estado de la red</param>
+        /// <param name="method">Método que se utilizara para generar los patrones</param>
+        public void CreateNN(int neurons, EnergyChangedHandler energyHandle = null, GenerationMethod method = GenerationMethod.Normal)
         {
             //Crea la red
             NeuralNetwork = new NeuralNetwork(neurons);
@@ -124,10 +155,15 @@ namespace KanjiRecognizer.Source
 
             //Instancia las variables
             this.learnedKanjis = new Dictionary<string, Kanji>();
-            this.learningMethod = method;
+            this.generationMethod = method;
         }
 
-        //Crea el patron segun la cantidad de neuronas de la red y usando el valor de activacion calculado
+        /// <summary>
+        /// Extrae el patrón de una imagen, con la cantidad de componentes igual a la cantidad de neuronas en la red.
+        /// </summary>
+        /// <param name="sourceBitmap">Imagen a partir de la cual se extrae el patrón</param>
+        /// <param name="activationValue">Valor utilizado para establer si un pixel es orientado o no en la matriz de pesos</param>
+        /// <param name="outBitmap">Imagen resultante a partir de la cual se extrajo el patron</param>
         private List<Neuron> patternFromBitmap(Bitmap sourceBitmap, int activationValue, out Bitmap outBitmap)
         {
             //El patron esta formado por un conjunto de estados de las neuronas
@@ -160,7 +196,11 @@ namespace KanjiRecognizer.Source
             return pattern;
         }
 
-        //Crea el patron a partir de un bithash. La cantidad de bits debe coincidir con la cantidad de neuronas.
+        /// <summary>
+        /// Convierte un bithash a un patrón. La cantidad de bits debe coincidir con la cantidad de neuronas.
+        /// </summary>
+        /// <param name="sourceBitmap">Bithash a partir de la cual se extrae el patrón</param>
+        /// <param name="outBitmap">Imagen resultante a partir de la cual se extrajo el patron</param>
         private List<Neuron> patternFromBithash(BitArray bithash, out Bitmap outBitmap)
         {
             //Valida la cantidad de bits iniciales
@@ -196,7 +236,10 @@ namespace KanjiRecognizer.Source
             return pattern;
         }
 
-        //Crea un bitmap a partir de un patron. Esta sera una imagen en blanco y negro
+        /// <summary>
+        /// Crea un bitmap a partir de un patrón. Esta será una imagen monocromo.
+        /// </summary>
+        /// <param name="pattern">Patrón utilizado para generar el bitmap</param>
         private Bitmap bitmapFromPattern(List<Neuron> pattern)
         {
             Bitmap resultBitmap = new Bitmap(sqrtNeuronsCount, sqrtNeuronsCount);
@@ -218,16 +261,18 @@ namespace KanjiRecognizer.Source
             }
             return resultBitmap;
         }
-
-        //Devuelve la raiz cuadrada de la cantidad de neuronas. Este valor sera usado para saber 
-        //el ancho y alto de las imagenes cuadradas que seran usdadas para la extraccion de patrones
+        
+        /// <summary>
+        /// Devuelve la raiz cuadrada de la cantidad de neuronas. Este valor será usado para saber
+        /// el ancho y alto de las imagenes cuadradas utilizadas luego para la extraccion de patrones.
+        /// </summary>
         private int sqrtNeuronsCount 
         {
             get { return (int) Math.Sqrt(NeuralNetwork.NeuronsCount); }
         }
 
-        //Modos de presentacion de patrones para el aprendizaje de patrones
-        public enum LearningMethod
+        //Modos de generación de patrones para el aprendizaje de los mismos
+        public enum GenerationMethod
         {
             Normal = 0,
             Hashing = 1
@@ -236,6 +281,6 @@ namespace KanjiRecognizer.Source
         //Variables        
         private Dictionary<string, Kanji> learnedKanjis;
         public NeuralNetwork NeuralNetwork { get; private set; }
-        public LearningMethod learningMethod { get; private set; }
+        public GenerationMethod generationMethod { get; private set; }
     }
 }
