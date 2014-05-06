@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmCreateImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCreateImage.Designer.cs">
+      <DependentUpon>frmCreateImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFailRecog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,15 @@
     <Compile Include="Source\ImageAPI.cs" />
     <Compile Include="Source\NeuralNetworkAPI.cs" />
     <Compile Include="Source\Kanji.cs" />
+    <Compile Include="frmEditKanji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditKanji.Designer.cs">
+      <DependentUpon>frmEditKanji.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmCreateImage.resx">
+      <DependentUpon>frmCreateImage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmFailRecog.resx">
       <DependentUpon>frmFailRecog.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +136,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="frmEditKanji.resx">
+      <DependentUpon>frmEditKanji.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -143,6 +161,60 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\RecognizeKanji.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circleBig.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circleMedium.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\circleSmall.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rectangleBig.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rectangleMedium.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rectangleSmall.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CursorCircleBig.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CursorCircleMedium.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CursorCircleSmall.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CursorRectBig.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CursorRectMedium.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CursorRectSmall.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\accept.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pincel.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

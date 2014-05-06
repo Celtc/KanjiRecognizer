@@ -34,12 +34,7 @@ namespace KanjiRecognizer.Source
             else
             {
                 //Otro
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    image.Save(stream, ImageFormat.Bmp);
-                    resultImage = new Bitmap(stream);
-                    stream.Close();
-                }
+                resultImage = new Bitmap(image);
             }
             return resultImage;
         }

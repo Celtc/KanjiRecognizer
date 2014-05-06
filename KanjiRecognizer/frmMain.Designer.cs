@@ -51,6 +51,7 @@
             this.button_runDynamics = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox_loadedKanji = new System.Windows.Forms.GroupBox();
+            this.button_edit = new System.Windows.Forms.Button();
             this.button_addNoise = new System.Windows.Forms.Button();
             this.openMultipleFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.nudIterations = new System.Windows.Forms.NumericUpDown();
@@ -231,6 +232,7 @@
             this.pictureBox_loadedImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox_loadedImage.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pictureBox_loadedImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox_loadedImage.Location = new System.Drawing.Point(6, 19);
             this.pictureBox_loadedImage.Name = "pictureBox_loadedImage";
@@ -271,6 +273,7 @@
             this.groupBox_loadedKanji.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_loadedKanji.Controls.Add(this.button_edit);
             this.groupBox_loadedKanji.Controls.Add(this.button_addNoise);
             this.groupBox_loadedKanji.Controls.Add(this.pictureBox_loadedImage);
             this.groupBox_loadedKanji.Controls.Add(this.button_loadImage);
@@ -280,6 +283,16 @@
             this.groupBox_loadedKanji.TabIndex = 5;
             this.groupBox_loadedKanji.TabStop = false;
             this.groupBox_loadedKanji.Text = "Kanji a Reconocer";
+            // 
+            // button_edit
+            // 
+            this.button_edit.Location = new System.Drawing.Point(274, 76);
+            this.button_edit.Name = "button_edit";
+            this.button_edit.Size = new System.Drawing.Size(75, 23);
+            this.button_edit.TabIndex = 4;
+            this.button_edit.Text = "Editar";
+            this.button_edit.UseVisualStyleBackColor = true;
+            this.button_edit.Click += new System.EventHandler(this.button_edit_Click);
             // 
             // button_addNoise
             // 
@@ -382,5 +395,6 @@
         private System.Windows.Forms.Button button_addNoise;
         private System.Windows.Forms.NumericUpDown nudIterations;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_edit;
     }
 }

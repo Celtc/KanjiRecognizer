@@ -163,12 +163,33 @@ namespace KanjiRecognizer
         //Agrega ruido a la imgen
         private void button_addNoise_Click(object sender, EventArgs e)
         {
+            //Verifica la imagen distorsionar
+            if (currentImage == null)
+            {
+                MessageBox.Show("No hay ninguna imagen cargada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             using (var addNoiseForm = new frmAddNoise(currentImage))
             {
                 var result = addNoiseForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     currentImage = addNoiseForm.image;
+                    pictureBox_loadedImage.Image = currentImage;
+                }
+            }
+        }
+
+        //Abre el editor gráfico
+        private void button_edit_Click(object sender, EventArgs e)
+        {
+            using (var editKanjiForm = new frmEditKanji(currentImage))
+            {
+                var result = editKanjiForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    currentImage = editKanjiForm.image;
                     pictureBox_loadedImage.Image = currentImage;
                 }
             }

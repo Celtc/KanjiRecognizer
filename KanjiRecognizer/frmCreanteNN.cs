@@ -42,13 +42,6 @@ namespace KanjiRecognizer
         //Evento de Click en el btn de crear
         private void button_createNN_Click(object sender, EventArgs e)
         {
-            //Valida la cantidad de neuronas
-            if (NCount < 1)
-            {
-                MessageBox.Show("El valor introducido no es válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
             //Crea la red
             try
             {
