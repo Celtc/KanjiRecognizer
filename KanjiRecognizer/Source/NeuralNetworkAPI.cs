@@ -106,7 +106,7 @@ namespace KanjiRecognizer.Source
         /// </summary>
         /// <param name="sourceImage">Imagen a reconocer</param>
         /// <param name="resultBitmap">Imagen devuelta por la red luego del analisis</param>
-        public Kanji RecognizeKanji(Image sourceImage, out Bitmap resultBitmap)
+        public Kanji RecognizeKanji(Image sourceImage, int iterations, out Bitmap resultBitmap)
         {
             //Dependiendo del modo obj de aprendizaje
             string accessHash = string.Empty;
@@ -123,11 +123,11 @@ namespace KanjiRecognizer.Source
             }  
             
             //Diagnostica el patron
-            NeuralNetwork.Run(initialState, false);
+            var returnedPattern = recognizePattern(initialState, iterations);
 
             //Busca si el resultado es un patron aprendido un minimo de energia local no esperado
             //Para esto extrae el bitmap del patron resultante y lo busca en los aprendidos
-            resultBitmap = bitmapFromPattern(NeuralNetwork.Neurons);
+            resultBitmap = bitmapFromPattern(returnedPattern);
             Kanji recognizedKanji = null;
             try
             {
@@ -138,6 +138,20 @@ namespace KanjiRecognizer.Source
             catch { }
 
             return recognizedKanji;
+        }
+
+        //Diagnostica un patrón tantas veces como iteraciones se especifiquen
+        private List<Neuron> recognizePattern(List<Neuron> inPattern, int iterations)
+        {
+            List<Neuron> outPattern = inPattern;
+
+            for (int i = 0; i < iterations; i++)
+            {
+                NeuralNetwork.Run(outPattern, false);
+                outPattern = NeuralNetwork.Neurons;
+            }
+
+            return outPattern;
         }
 
         /// <summary>

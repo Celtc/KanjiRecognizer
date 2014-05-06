@@ -98,7 +98,7 @@ namespace KanjiRecognizer
             else if (Math.Sqrt(number) % 1 != 0)
             {
                 error = true;
-                errorMsg = "La raiz del numero debe ser un valor entero. Ej.: 20x20, 40x40, 50x50 etc.";
+                errorMsg = "La raiz del numero debe ser un valor entero. Ej.: 20x20, 40x40, 64x64 etc.";
             }
 
             //Muestra el resultado de las validaciones
