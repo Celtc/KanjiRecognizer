@@ -69,7 +69,7 @@ namespace KanjiRecognizer.Source
 
             //Extrae el patron y su bitmap
             Bitmap processedBitmap;
-            pattern = patternFromBitmap(sourceBitmap, 0.8f, out processedBitmap);
+            pattern = patternFromBitmap(sourceBitmap, threshold, out processedBitmap);
 
             //Genera el hash a partir del bitmap de salida
             accessHash = ImageAPI.GenerateSHA1HashFromImage(processedBitmap);
@@ -193,7 +193,7 @@ namespace KanjiRecognizer.Source
         /// <param name="neurons">Cantidad de neuronas con que sera creada la red</param>
         /// <param name="energyHandle">Handler para el evento de cambio de energia del estado de la red</param>
         /// <param name="method">Método que se utilizara para generar los patrones</param>
-        public void CreateNN(int neurons, EnergyChangedHandler energyHandle = null, GenerationMethod method = GenerationMethod.Normal, UpdateSequence updSequence = UpdateSequence.PseudoRandom)
+        public void CreateNN(int neurons, float threshold, EnergyChangedHandler energyHandle = null, GenerationMethod method = GenerationMethod.Normal, UpdateSequence updSequence = UpdateSequence.PseudoRandom)
         {
             //Crea la red
             NeuralNetwork = new NeuralNetwork(neurons);
@@ -204,6 +204,7 @@ namespace KanjiRecognizer.Source
             this.learnedKanjis = new Dictionary<string, Kanji>();
             this.generationMethod = method;
             this.updSequence = updSequence;
+            this.threshold = threshold;
         }
 
         /// <summary>
@@ -427,8 +428,9 @@ namespace KanjiRecognizer.Source
             Heightmap = 2
         }
 
-        //Variables        
+        //Variables
         private Dictionary<string, Kanji> learnedKanjis;
+        public float threshold { get; private set; }
         public NeuralNetwork NeuralNetwork { get; private set; }
         public UpdateSequence updSequence { get; private set; }
         public GenerationMethod generationMethod { get; private set; }

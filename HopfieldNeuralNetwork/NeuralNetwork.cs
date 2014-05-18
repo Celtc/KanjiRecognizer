@@ -163,7 +163,12 @@ namespace HopfieldNeuralNetwork
                         for (int j = 0; j < NeuronsCount; j++)
                             neuronHeight += Matrix[i, jArray[j]] * (newState[j].State);
                     }
-                    else
+                    else if (updSequence == UpdateSequence.Sequential)
+                    {
+                        for (int j = 0; j < NeuronsCount; j++)
+                            neuronHeight += Matrix[i, j] * (newState[j].State);
+                    }
+                    else if (updSequence == UpdateSequence.Synchronous)
                     {
                         for (int j = 0; j < NeuronsCount; j++)
                             neuronHeight += Matrix[i, j] * (Neurons[j].State);

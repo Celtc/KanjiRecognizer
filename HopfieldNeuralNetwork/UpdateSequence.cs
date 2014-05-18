@@ -17,6 +17,10 @@ namespace HopfieldNeuralNetwork
         /// <summary>
         /// Updates all the nodes in steps but in random order. The updated values are influenced by the changing values
         /// </summary>
-        PseudoRandom = 1    
+        PseudoRandom = 1,
+        /// <summary>
+        /// Updates all the nodes in steps sequentially from neuron 0 to N. The updated values are influenced by the changing values
+        /// </summary>
+        Sequential = 2   
     }
 }

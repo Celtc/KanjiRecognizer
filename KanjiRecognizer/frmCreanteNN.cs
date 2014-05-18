@@ -23,7 +23,8 @@ namespace KanjiRecognizer
         private void frmCreanteNN_Load(object sender, EventArgs e)
         {
             //Carga el valor por defecto
-            NCount = int.Parse(KanjiRecognizer.Properties.Resources.DefaultNumberOfNeurons);
+            threshold = 0.8f;
+            nCount = int.Parse(KanjiRecognizer.Properties.Resources.DefaultNumberOfNeurons);
             textBox_nCount.Text = KanjiRecognizer.Properties.Resources.DefaultNumberOfNeurons;
             comboBox_gMethod.DataSource = Enum.GetValues(typeof(NeuralNetworkAPI.GenerationMethod)).Cast<NeuralNetworkAPI.GenerationMethod>().Take(2).ToArray();
             comboBox_gMethod.SelectedIndex = 0;
@@ -31,18 +32,21 @@ namespace KanjiRecognizer
             comboBox_updSequence.SelectedIndex = 0;
         }
 
-        private static void RemoteArrayItem<T>(ref T[] inArray, int inIndex)
+        //Cambio del metodo de generación de patrón
+        private void comboBox_gMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
-            T[] newArray = new T[inArray.Length - 1];
-            for (int i = 0, j = 0; i < newArray.Length; i++, j++)
-            {
-                if (i == inIndex)
-                {
-                    j++;
-                }
-                newArray[i] = inArray[j];
-            }
-            inArray = newArray;
+            NeuralNetworkAPI.GenerationMethod gMethod;
+            Enum.TryParse<NeuralNetworkAPI.GenerationMethod>(comboBox_gMethod.SelectedValue.ToString(), out gMethod);
+            if (gMethod == NeuralNetworkAPI.GenerationMethod.Hashing)
+                nudThreshold.Enabled = false;
+            else
+                nudThreshold.Enabled = true;
+        }
+
+        //Evento de cambio en el valor del slide
+        private void nudThreshold_ValueChanged(object sender, EventArgs e)
+        {
+            threshold = (float)nudThreshold.Value / 100;
         }
 
         //Evento de KeyDown en el textbox de cantidad de neuronas
@@ -71,7 +75,7 @@ namespace KanjiRecognizer
 
                 //Instancia y crea la red
                 var nnAPI = new NeuralNetworkAPI();
-                nnAPI.CreateNN(NCount, null, gMethod, updSequence);
+                nnAPI.CreateNN(nCount, threshold, null, gMethod, updSequence);
 
                 this.ReturnNN = nnAPI;
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -132,17 +136,18 @@ namespace KanjiRecognizer
             {
                 //Parsea el valor
                 var newValue = textBox_nCount.Text;
-                NCount = int.Parse(newValue);
+                nCount = int.Parse(newValue);
             }
             catch
             {
                 MessageBox.Show("Ocurrio un error inesperado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox_nCount.Text = NCount.ToString();
+                textBox_nCount.Text = nCount.ToString();
             }
         }
 
         //Variables
-        private int NCount { get; set; }
+        private int nCount { get; set; }
+        private float threshold { get; set; }
         public NeuralNetworkAPI ReturnNN { get; private set; }
     }
 }

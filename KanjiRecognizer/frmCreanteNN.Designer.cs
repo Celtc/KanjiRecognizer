@@ -37,11 +37,13 @@
             this.errorProvider_frmCreateNN = new System.Windows.Forms.ErrorProvider(this.components);
             this.comboBox_gMethod = new System.Windows.Forms.ComboBox();
             this.label_gMethod = new System.Windows.Forms.Label();
-            this.toolTip_gMethod = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.label_updSequence = new System.Windows.Forms.Label();
+            this.label_threshold = new System.Windows.Forms.Label();
             this.comboBox_updSequence = new System.Windows.Forms.ComboBox();
-            this.toolTip_updSequence = new System.Windows.Forms.ToolTip(this.components);
+            this.nudThreshold = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_frmCreateNN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudThreshold)).BeginInit();
             this.SuspendLayout();
             // 
             // label_nCount
@@ -82,28 +84,35 @@
             this.comboBox_gMethod.FormattingEnabled = true;
             resources.ApplyResources(this.comboBox_gMethod, "comboBox_gMethod");
             this.comboBox_gMethod.Name = "comboBox_gMethod";
+            this.comboBox_gMethod.SelectedIndexChanged += new System.EventHandler(this.comboBox_gMethod_SelectedIndexChanged);
             // 
             // label_gMethod
             // 
             resources.ApplyResources(this.label_gMethod, "label_gMethod");
             this.label_gMethod.Name = "label_gMethod";
-            this.toolTip_gMethod.SetToolTip(this.label_gMethod, resources.GetString("label_gMethod.ToolTip"));
+            this.toolTip.SetToolTip(this.label_gMethod, resources.GetString("label_gMethod.ToolTip"));
             // 
-            // toolTip_gMethod
+            // toolTip
             // 
-            this.toolTip_gMethod.AutoPopDelay = 32766;
-            this.toolTip_gMethod.InitialDelay = 200;
-            this.toolTip_gMethod.IsBalloon = true;
-            this.toolTip_gMethod.ReshowDelay = 100;
-            this.toolTip_gMethod.ShowAlways = true;
-            this.toolTip_gMethod.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip_gMethod.ToolTipTitle = "Métodos de generación de patrones";
+            this.toolTip.AutoPopDelay = 32766;
+            this.toolTip.InitialDelay = 200;
+            this.toolTip.IsBalloon = true;
+            this.toolTip.ReshowDelay = 100;
+            this.toolTip.ShowAlways = true;
+            this.toolTip.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip.ToolTipTitle = "Información";
             // 
             // label_updSequence
             // 
             resources.ApplyResources(this.label_updSequence, "label_updSequence");
             this.label_updSequence.Name = "label_updSequence";
-            this.toolTip_updSequence.SetToolTip(this.label_updSequence, resources.GetString("label_updSequence.ToolTip"));
+            this.toolTip.SetToolTip(this.label_updSequence, resources.GetString("label_updSequence.ToolTip"));
+            // 
+            // label_threshold
+            // 
+            resources.ApplyResources(this.label_threshold, "label_threshold");
+            this.label_threshold.Name = "label_threshold";
+            this.toolTip.SetToolTip(this.label_threshold, resources.GetString("label_threshold.ToolTip"));
             // 
             // comboBox_updSequence
             // 
@@ -112,15 +121,28 @@
             resources.ApplyResources(this.comboBox_updSequence, "comboBox_updSequence");
             this.comboBox_updSequence.Name = "comboBox_updSequence";
             // 
-            // toolTip_updSequence
+            // nudThreshold
             // 
-            this.toolTip_updSequence.AutoPopDelay = 32766;
-            this.toolTip_updSequence.InitialDelay = 200;
-            this.toolTip_updSequence.IsBalloon = true;
-            this.toolTip_updSequence.ReshowDelay = 100;
-            this.toolTip_updSequence.ShowAlways = true;
-            this.toolTip_updSequence.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.toolTip_updSequence.ToolTipTitle = "Secuencias de Actualizado de Estados";
+            this.nudThreshold.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nudThreshold.DecimalPlaces = 2;
+            this.nudThreshold.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            resources.ApplyResources(this.nudThreshold, "nudThreshold");
+            this.nudThreshold.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudThreshold.Name = "nudThreshold";
+            this.nudThreshold.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            65536});
+            this.nudThreshold.ValueChanged += new System.EventHandler(this.nudThreshold_ValueChanged);
             // 
             // frmCreanteNN
             // 
@@ -130,6 +152,8 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.CancelButton = this.button_cancelFRM;
             this.ControlBox = false;
+            this.Controls.Add(this.nudThreshold);
+            this.Controls.Add(this.label_threshold);
             this.Controls.Add(this.label_updSequence);
             this.Controls.Add(this.comboBox_updSequence);
             this.Controls.Add(this.label_gMethod);
@@ -143,6 +167,7 @@
             this.ShowInTaskbar = false;
             this.Load += new System.EventHandler(this.frmCreanteNN_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_frmCreateNN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudThreshold)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,9 +182,10 @@
         private System.Windows.Forms.ErrorProvider errorProvider_frmCreateNN;
         private System.Windows.Forms.Label label_gMethod;
         private System.Windows.Forms.ComboBox comboBox_gMethod;
-        private System.Windows.Forms.ToolTip toolTip_gMethod;
+        private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Label label_updSequence;
         private System.Windows.Forms.ComboBox comboBox_updSequence;
-        private System.Windows.Forms.ToolTip toolTip_updSequence;
+        private System.Windows.Forms.Label label_threshold;
+        private System.Windows.Forms.NumericUpDown nudThreshold;
     }
 }

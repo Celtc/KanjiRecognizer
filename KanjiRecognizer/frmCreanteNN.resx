@@ -144,7 +144,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label_nCount.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="textBox_nCount.Location" type="System.Drawing.Point, System.Drawing">
     <value>148, 15</value>
@@ -169,10 +169,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBox_nCount.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="button_cancelFRM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>149, 103</value>
+    <value>151, 129</value>
   </data>
   <data name="button_cancelFRM.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -193,13 +193,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button_cancelFRM.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="button_createNN.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="button_createNN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 103</value>
+    <value>69, 129</value>
   </data>
   <data name="button_createNN.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -220,7 +220,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button_createNN.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <metadata name="errorProvider_frmCreateNN.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -232,7 +232,71 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>294, 136</value>
+    <value>294, 164</value>
+  </data>
+  <data name="nudThreshold.Location" type="System.Drawing.Point, System.Drawing">
+    <value>148, 101</value>
+  </data>
+  <data name="nudThreshold.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 20</value>
+  </data>
+  <data name="nudThreshold.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;nudThreshold.Name" xml:space="preserve">
+    <value>nudThreshold</value>
+  </data>
+  <data name="&gt;&gt;nudThreshold.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nudThreshold.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;nudThreshold.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label_threshold.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_threshold.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
+  </data>
+  <data name="label_threshold.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_threshold.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 103</value>
+  </data>
+  <data name="label_threshold.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
+  </data>
+  <data name="label_threshold.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="label_threshold.Text" xml:space="preserve">
+    <value>Threshold</value>
+  </data>
+  <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>218, 17</value>
+  </metadata>
+  <data name="label_threshold.ToolTip" xml:space="preserve">
+    <value>Threshold:
+
+Valor utilizado al momento de realizar el pasaje a monocromo 
+de la imagen. Valores mayores aumentaran el umbral de reco-
+cimiento de pixeles que seran intepretados como negros.</value>
+  </data>
+  <data name="&gt;&gt;label_threshold.Name" xml:space="preserve">
+    <value>label_threshold</value>
+  </data>
+  <data name="&gt;&gt;label_threshold.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_threshold.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label_threshold.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="label_updSequence.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -255,18 +319,17 @@
   <data name="label_updSequence.Text" xml:space="preserve">
     <value>Secuencia de actualizado</value>
   </data>
-  <metadata name="toolTip_updSequence.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>364, 17</value>
-  </metadata>
   <data name="label_updSequence.ToolTip" xml:space="preserve">
-    <value>Synchronous: Todas las neuronas actualizan simultaneamente sus estados basandose en el 
+    <value>Secuencias posibles para el actualizado de los estados:
+
+Synchronous: Todas las neuronas actualizan simultaneamente sus estados basandose en el 
 estado global actual de la red. Esto se repite en n iteraciones o etapas hasta que se 
 logra estabilizar la red. De esta forma los cambios de estado no se ven influenciados 
 por cambios anteriores en otras neuronas dentro de una misma iteración.
 
 PseudoRandom: Al igual que el actualizado synchronous se realiza en etapas, evaluando 
 todas las neuronas en cada una de las etapas. Sin embargo dentro de una misma etapa las 
-actualizaciones consecutivas se ven influciadas por actualizaciones previas realizadas 
+actualizaciones consecutivas se ven influenciadas por actualizaciones previas realizadas 
 en la misma etapa a otras neuronas. El orden en que se actualizan es generado de manera 
 random.</value>
   </data>
@@ -280,7 +343,7 @@ random.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label_updSequence.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="comboBox_updSequence.Location" type="System.Drawing.Point, System.Drawing">
     <value>148, 70</value>
@@ -301,7 +364,7 @@ random.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBox_updSequence.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="label_gMethod.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -321,11 +384,10 @@ random.</value>
   <data name="label_gMethod.Text" xml:space="preserve">
     <value>Generación del patrón</value>
   </data>
-  <metadata name="toolTip_gMethod.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>218, 17</value>
-  </metadata>
   <data name="label_gMethod.ToolTip" xml:space="preserve">
-    <value>Normal: El patrón sera generado a partir del contenido de la imagen, una vez escalada para
+    <value>Metodos de generación del patrón:
+
+Normal: El patrón sera generado a partir del contenido de la imagen, una vez escalada para
 que coincida en cantidad de pixeles a la cantidad de neuronas.
 
 Hashing: Este método aumentará la cantidad de patrones reconocibles al aprender códigos
@@ -342,7 +404,7 @@ el reconocimiento se limitará a imágenes exactamente iguales a las aprendidas.
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label_gMethod.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="comboBox_gMethod.Location" type="System.Drawing.Point, System.Drawing">
     <value>148, 41</value>
@@ -363,7 +425,7 @@ el reconocimiento se limitará a imágenes exactamente iguales a las aprendidas.
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBox_gMethod.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -377,16 +439,10 @@ el reconocimiento se limitará a imágenes exactamente iguales a las aprendidas.
   <data name="&gt;&gt;errorProvider_frmCreateNN.Type" xml:space="preserve">
     <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolTip_gMethod.Name" xml:space="preserve">
-    <value>toolTip_gMethod</value>
+  <data name="&gt;&gt;toolTip.Name" xml:space="preserve">
+    <value>toolTip</value>
   </data>
-  <data name="&gt;&gt;toolTip_gMethod.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolTip_updSequence.Name" xml:space="preserve">
-    <value>toolTip_updSequence</value>
-  </data>
-  <data name="&gt;&gt;toolTip_updSequence.Type" xml:space="preserve">
+  <data name="&gt;&gt;toolTip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
