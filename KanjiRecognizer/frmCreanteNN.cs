@@ -19,14 +19,30 @@ namespace KanjiRecognizer
             InitializeComponent();
         }
         
-        //Awake
+        //OnLoad
         private void frmCreanteNN_Load(object sender, EventArgs e)
         {
             //Carga el valor por defecto
             NCount = int.Parse(KanjiRecognizer.Properties.Resources.DefaultNumberOfNeurons);
             textBox_nCount.Text = KanjiRecognizer.Properties.Resources.DefaultNumberOfNeurons;
-            comboBox_gMethod.DataSource = Enum.GetValues(typeof(NeuralNetworkAPI.GenerationMethod));
+            comboBox_gMethod.DataSource = Enum.GetValues(typeof(NeuralNetworkAPI.GenerationMethod)).Cast<NeuralNetworkAPI.GenerationMethod>().Take(2).ToArray();
             comboBox_gMethod.SelectedIndex = 0;
+            comboBox_updSequence.DataSource = Enum.GetValues(typeof(HopfieldNeuralNetwork.UpdateSequence));
+            comboBox_updSequence.SelectedIndex = 0;
+        }
+
+        private static void RemoteArrayItem<T>(ref T[] inArray, int inIndex)
+        {
+            T[] newArray = new T[inArray.Length - 1];
+            for (int i = 0, j = 0; i < newArray.Length; i++, j++)
+            {
+                if (i == inIndex)
+                {
+                    j++;
+                }
+                newArray[i] = inArray[j];
+            }
+            inArray = newArray;
         }
 
         //Evento de KeyDown en el textbox de cantidad de neuronas
@@ -47,11 +63,15 @@ namespace KanjiRecognizer
             {
                 //Metodo de generacion de patrones
                 NeuralNetworkAPI.GenerationMethod gMethod;
-                Enum.TryParse<NeuralNetworkAPI.GenerationMethod>(comboBox_gMethod.SelectedValue.ToString(), out gMethod); 
+                Enum.TryParse<NeuralNetworkAPI.GenerationMethod>(comboBox_gMethod.SelectedValue.ToString(), out gMethod);
+
+                //Secuencia de actualizado
+                HopfieldNeuralNetwork.UpdateSequence updSequence;
+                Enum.TryParse<HopfieldNeuralNetwork.UpdateSequence>(comboBox_updSequence.SelectedValue.ToString(), out updSequence); 
 
                 //Instancia y crea la red
                 var nnAPI = new NeuralNetworkAPI();
-                nnAPI.CreateNN(NCount, null, gMethod);
+                nnAPI.CreateNN(NCount, null, gMethod, updSequence);
 
                 this.ReturnNN = nnAPI;
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;

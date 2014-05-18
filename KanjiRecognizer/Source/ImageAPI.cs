@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Security.Cryptography;
-using System.Drawing.Drawing2D;
+using System.Runtime.InteropServices;
 using System.Collections;
 
 namespace KanjiRecognizer.Source
@@ -53,9 +54,36 @@ namespace KanjiRecognizer.Source
                 graph.SmoothingMode = SmoothingMode.HighQuality;
                 graph.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 graph.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                graph.DrawImage(image, 0, 0, width, height);
+                graph.DrawImage(image, -1, -1, width + 2, height + 2);
             }
             return resultImage;
+        }
+
+        /// <summary>
+        /// Convierte el bitmap a blanco y negro utilzando un threshold específico.
+        /// </summary>
+        /// <param name="sourceImage">Imagen fuente</param>
+        /// <param name="threshold">Threshold que se utilizara para determinar si un pixel es blanco o negro</param>
+        public static Bitmap BitmapToMonochrome(Bitmap sourceImage, float threshold)
+        {
+            using (Graphics gr = Graphics.FromImage(sourceImage)) // SourceImage is a Bitmap object
+            {
+                var gray_matrix = new float[][] { 
+                new float[] { 0.299f, 0.299f, 0.299f, 0, 0 }, 
+                new float[] { 0.587f, 0.587f, 0.587f, 0, 0 }, 
+                new float[] { 0.114f, 0.114f, 0.114f, 0, 0 }, 
+                new float[] { 0,      0,      0,      1, 0 }, 
+                new float[] { 0,      0,      0,      0, 1 } 
+                };
+
+                var ia = new System.Drawing.Imaging.ImageAttributes();
+                ia.SetColorMatrix(new System.Drawing.Imaging.ColorMatrix(gray_matrix));
+                ia.SetThreshold(threshold); 
+                var rc = new Rectangle(0, 0, sourceImage.Width, sourceImage.Height);
+                gr.DrawImage(sourceImage, rc, 0, 0, sourceImage.Width, sourceImage.Height, GraphicsUnit.Pixel, ia);
+            }
+
+            return sourceImage;
         }
 
         /// <summary>

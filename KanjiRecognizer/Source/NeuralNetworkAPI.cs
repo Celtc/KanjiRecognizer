@@ -7,6 +7,7 @@ using System.Windows;
 
 using HopfieldNeuralNetwork;
 using System.Collections;
+using System.Drawing.Imaging;
 
 namespace KanjiRecognizer.Source
 {
@@ -35,14 +36,15 @@ namespace KanjiRecognizer.Source
             switch (generationMethod)
             {
                 case GenerationMethod.Normal:
+                case GenerationMethod.Heightmap:
                     generatePattern_Normal(kanji.sourceImage, out pattern, out accessHash);
                     break;
 
                 case GenerationMethod.Hashing:
                     generatePattern_Hashing(kanji.sourceImage, out pattern, out accessHash);
                     break;
-            }          
-
+            }
+            
             //Revisa que no exisitiera el patron ya en la base de datos
             if (!learnedKanjis.ContainsKey(accessHash))
             {
@@ -62,18 +64,31 @@ namespace KanjiRecognizer.Source
         /// <param name="accesHash">Hash que identifica unívocamente este patrón</param>
         private void generatePattern_Normal(Image sourceImage, out List<Neuron> pattern, out string accessHash)
         {
-            //Establece el valor de activación de las neuronas
-            int activationValue = Math.Abs((int)(Color.Black.ToArgb() / 2));
-
             //Convierte la imagen a bitmap
             Bitmap sourceBitmap = ImageAPI.AlltoBMP(sourceImage);
 
             //Extrae el patron y su bitmap
             Bitmap processedBitmap;
-            pattern = patternFromBitmap(sourceBitmap, activationValue, out processedBitmap);
+            pattern = patternFromBitmap(sourceBitmap, 0.8f, out processedBitmap);
 
             //Genera el hash a partir del bitmap de salida
             accessHash = ImageAPI.GenerateSHA1HashFromImage(processedBitmap);
+
+            return;
+        }
+
+        /// <summary>
+        /// Genera el patrón a través del metodo habitual, y luego crea el heightmap del patron generado.
+        /// </summary>
+        /// <param name="sourceImage">Imagen a partir de la cual se generara el patrón</param>
+        /// <param name="pattern">Patrón resultante</param>
+        /// <param name="heightmap">Heightmap del patrón generado</param>
+        /// <param name="accesHash">Hash que identifica unívocamente este patrón</param>
+        private void generatePattern_Heightmap(Image sourceImage, out List<Neuron> pattern, out List<double> heightmap, out string accessHash)
+        {
+            generatePattern_Normal(sourceImage, out pattern, out accessHash);
+
+            heightmap = calculateHeightmap(bitmapFromPattern(pattern));
 
             return;
         }
@@ -105,12 +120,14 @@ namespace KanjiRecognizer.Source
         /// En caso de reconocer la imagen, devuelve el kanji correspondiente, sino devuelve null.
         /// </summary>
         /// <param name="sourceImage">Imagen a reconocer</param>
+        /// <param name="iterations">Cantidad de intentos de reconocer la imagen</param>
         /// <param name="resultBitmap">Imagen devuelta por la red luego del analisis</param>
-        public Kanji RecognizeKanji(Image sourceImage, int iterations, out Bitmap resultBitmap)
+        public Kanji RecognizeKanji(Image sourceImage, out Bitmap resultBitmap)
         {
             //Dependiendo del modo obj de aprendizaje
-            string accessHash = string.Empty;
+            List<double> heightmap = null;
             List<Neuron> initialState = null;
+            string accessHash = string.Empty;
             switch (generationMethod)
             {
                 case GenerationMethod.Normal:
@@ -120,10 +137,14 @@ namespace KanjiRecognizer.Source
                 case GenerationMethod.Hashing:
                     generatePattern_Hashing(sourceImage, out initialState, out accessHash);
                     break;
+
+                case GenerationMethod.Heightmap:
+                    generatePattern_Heightmap(sourceImage, out initialState, out heightmap, out accessHash);
+                    break;
             }  
             
             //Diagnostica el patron
-            var returnedPattern = recognizePattern(initialState, iterations);
+            var returnedPattern = recognizePattern(initialState, heightmap);
 
             //Busca si el resultado es un patron aprendido un minimo de energia local no esperado
             //Para esto extrae el bitmap del patron resultante y lo busca en los aprendidos
@@ -139,17 +160,29 @@ namespace KanjiRecognizer.Source
 
             return recognizedKanji;
         }
-
-        //Diagnostica un patrón tantas veces como iteraciones se especifiquen
-        private List<Neuron> recognizePattern(List<Neuron> inPattern, int iterations)
+        
+        /// <summary>
+        /// Diagnostica un patrón tantas veces como iteraciones se especifiquen.
+        /// Devuelve el patrón resultante.
+        /// </summary>
+        /// <param name="inPattern">Patrón inicial</param>
+        /// <param name="heightmap">Heightmap utilizado para el diagnostico, puede ser null</param>
+        /// <param name="iterations">Cantidad de intentos de reconocer la imagen</param>
+        private List<Neuron> recognizePattern(List<Neuron> inPattern, List<double> heightmap)
         {
+            bool heightmapMethod = generationMethod == GenerationMethod.Heightmap;
             List<Neuron> outPattern = inPattern;
+            List<Neuron> currentState;
 
-            for (int i = 0; i < iterations; i++)
+            do
             {
-                NeuralNetwork.Run(outPattern, false);
-                outPattern = NeuralNetwork.Neurons;
-            }
+                NeuralNetwork.Run(outPattern, heightmap, updSequence);
+                currentState = NeuralNetwork.Neurons;
+                if (heightmapMethod && currentState == outPattern)
+                    break;
+                else
+                    outPattern = currentState;
+            } while (heightmapMethod);
 
             return outPattern;
         }
@@ -160,7 +193,7 @@ namespace KanjiRecognizer.Source
         /// <param name="neurons">Cantidad de neuronas con que sera creada la red</param>
         /// <param name="energyHandle">Handler para el evento de cambio de energia del estado de la red</param>
         /// <param name="method">Método que se utilizara para generar los patrones</param>
-        public void CreateNN(int neurons, EnergyChangedHandler energyHandle = null, GenerationMethod method = GenerationMethod.Normal)
+        public void CreateNN(int neurons, EnergyChangedHandler energyHandle = null, GenerationMethod method = GenerationMethod.Normal, UpdateSequence updSequence = UpdateSequence.PseudoRandom)
         {
             //Crea la red
             NeuralNetwork = new NeuralNetwork(neurons);
@@ -170,6 +203,7 @@ namespace KanjiRecognizer.Source
             //Instancia las variables
             this.learnedKanjis = new Dictionary<string, Kanji>();
             this.generationMethod = method;
+            this.updSequence = updSequence;
         }
 
         /// <summary>
@@ -178,13 +212,14 @@ namespace KanjiRecognizer.Source
         /// <param name="sourceBitmap">Imagen a partir de la cual se extrae el patrón</param>
         /// <param name="activationValue">Valor utilizado para establer si un pixel es orientado o no en la matriz de pesos</param>
         /// <param name="outBitmap">Imagen resultante a partir de la cual se extrajo el patron</param>
-        private List<Neuron> patternFromBitmap(Bitmap sourceBitmap, int activationValue, out Bitmap outBitmap)
+        private List<Neuron> patternFromBitmap(Bitmap sourceBitmap, float threshold, out Bitmap outBitmap)
         {
             //El patron esta formado por un conjunto de estados de las neuronas
             List<Neuron> pattern = new List<Neuron>(NeuralNetwork.NeuronsCount);
 
-            //Escala la imagen para que tenga tanto pixeles como neuronas
-            sourceBitmap = ImageAPI.ResizeBitmap(sourceBitmap, sqrtNeuronsCount, sqrtNeuronsCount);
+            //Escala la imagen para que tenga tanto pixeles como neuronas y la pasa a blanco y negro
+            sourceBitmap = ImageAPI.ResizeBitmap(sourceBitmap, sqrtNeuronsCount, sqrtNeuronsCount);            
+            sourceBitmap = ImageAPI.BitmapToMonochrome(sourceBitmap, threshold);
 
             //Establece los estados de las neuronas para cada pixel
             for (int i = 0; i < sqrtNeuronsCount; i++)
@@ -193,7 +228,7 @@ namespace KanjiRecognizer.Source
                 {
                     Neuron neuron = new Neuron();
                     int pixelValue = Math.Abs(sourceBitmap.GetPixel(i, j).ToArgb());
-                    if (pixelValue < activationValue)
+                    if (pixelValue == 1)
                     {
                         sourceBitmap.SetPixel(i, j, Color.White);
                         neuron.State = NeuronStates.AlongField;
@@ -207,6 +242,7 @@ namespace KanjiRecognizer.Source
                 }
             }
             outBitmap = sourceBitmap;
+            
             return pattern;
         }
 
@@ -259,7 +295,7 @@ namespace KanjiRecognizer.Source
             Bitmap resultBitmap = new Bitmap(sqrtNeuronsCount, sqrtNeuronsCount);
             for (int i = 0; i < resultBitmap.Width; i++)
             {
-                for (int j = 0; j < resultBitmap.Height; j++) //La matriz es cuadrada
+                for (int j = 0; j < resultBitmap.Height; j++)
                 {
                     int currIndex = sqrtNeuronsCount * i + j;
                     Neuron currNeuron = pattern[currIndex];
@@ -275,7 +311,105 @@ namespace KanjiRecognizer.Source
             }
             return resultBitmap;
         }
-        
+
+        /// <summary>
+        /// Calcula el heightmap a partir de un bitmap monocromo que representa el patrón relacionado.
+        /// </summary>
+        /// <param name="pattern">Bitmap a partir del cual se calculan las alturas</param>
+        private List<double> calculateHeightmap(Bitmap patternBitmap)
+        {
+            int width = patternBitmap.Width;
+            int height = patternBitmap.Height;
+            int blackColor = Color.Black.ToArgb();
+            var pixelActivated = new Func<Color, bool>(i => { return i.ToArgb() == blackColor; });
+
+            //Matriz de alturas a calcular
+            int[,] heightmapMatrix = new int[patternBitmap.Width, patternBitmap.Height];
+            for (int x = 0; x < width; x++)
+                for (int y = 0; y < height; y++)
+                    heightmapMatrix[x, y] = 0;
+
+            //Completo el nivel 1 (los contornos)
+            for (int x = 0; x < width; x++)
+                for (int y = 0; y < height; y++)
+                {
+                    //Estado del pixel (true -> activado, false -> descativado)
+                    bool activated = patternBitmap.GetPixel(x, y).ToArgb() == blackColor;
+
+                    //Variable que indica si un pixel contiguo tiene un estado opuesto
+                    bool border = false;
+
+                    //Verifica los pixeles contiguos
+                    if (x > 0 && pixelActivated(patternBitmap.GetPixel(x - 1, y)) != activated)
+                        border = true;
+                    else if (x < width - 1 && pixelActivated(patternBitmap.GetPixel(x + 1, y)) != activated)
+                        border = true;
+                    else if (y > 0 && pixelActivated(patternBitmap.GetPixel(x, y - 1)) != activated)
+                        border = true;
+                    else if (y < height - 1 && pixelActivated(patternBitmap.GetPixel(x, y + 1)) != activated)
+                        border = true;
+
+                    if (border)
+                        heightmapMatrix[x, y] = activated? -1 : 1;
+                }
+
+            //Itero por cada pixel del bitmap y por nivel hasta calcular todas las alturas
+            int prevLevel = 1;
+            bool isCalculating = true;
+            while (isCalculating)
+            {
+                isCalculating = false;
+                for (int x = 0; x < width; x++)
+                    for (int y = 0; y < height; y++)
+                    {
+                        if (heightmapMatrix[x, y] == 0)
+                        {
+                            bool negSign = false;
+                            bool lvlBorder = false;
+                            if (x > 0 && Math.Abs(heightmapMatrix[x - 1, y]) == prevLevel)
+                            {
+                                lvlBorder = true;
+                                negSign = heightmapMatrix[x - 1, y] < 0;
+                            }
+                            else if (x < width - 1 && Math.Abs(heightmapMatrix[x + 1, y]) == prevLevel)
+                            {
+                                lvlBorder = true;
+                                negSign = heightmapMatrix[x + 1, y] < 0;
+                            }
+                            else if (y > 0 && Math.Abs(heightmapMatrix[x, y - 1]) == prevLevel)
+                            {
+                                lvlBorder = true;
+                                negSign = heightmapMatrix[x, y - 1] < 0;
+                            }
+                            else if (y < height - 1 && Math.Abs(heightmapMatrix[x, y + 1]) == prevLevel)
+                            {
+                                lvlBorder = true;
+                                negSign = heightmapMatrix[x, y + 1] < 0;
+                            }
+
+                            if (lvlBorder)
+                            {
+                                heightmapMatrix[x, y] = negSign ? -(prevLevel + 1) : (prevLevel + 1);
+                                isCalculating = true;
+                            }
+                        }
+                    }
+                prevLevel++;
+            }
+
+            //Convierte la matriz en una lista, y los niveles en coeficientes dimensionales
+            List<double> heightmap = new List<double>(patternBitmap.Width * patternBitmap.Height);
+            for (int x = 0; x < width; x++)
+                for (int y = 0; y < height; y++)
+                {
+                    int sign = heightmapMatrix[x, y] < 0 ? -2 : 1;
+                    double value = Math.Min(Int32.MaxValue, Math.Pow(10, Math.Abs(heightmapMatrix[x, y])));
+                    heightmap.Add(value * sign);
+                }
+
+            return heightmap;
+        }
+
         /// <summary>
         /// Devuelve la raiz cuadrada de la cantidad de neuronas. Este valor será usado para saber
         /// el ancho y alto de las imagenes cuadradas utilizadas luego para la extraccion de patrones.
@@ -289,12 +423,14 @@ namespace KanjiRecognizer.Source
         public enum GenerationMethod
         {
             Normal = 0,
-            Hashing = 1
+            Hashing = 1,
+            Heightmap = 2
         }
 
         //Variables        
         private Dictionary<string, Kanji> learnedKanjis;
         public NeuralNetwork NeuralNetwork { get; private set; }
+        public UpdateSequence updSequence { get; private set; }
         public GenerationMethod generationMethod { get; private set; }
     }
 }

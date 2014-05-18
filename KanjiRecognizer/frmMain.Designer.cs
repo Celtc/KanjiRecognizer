@@ -54,13 +54,10 @@
             this.button_edit = new System.Windows.Forms.Button();
             this.button_addNoise = new System.Windows.Forms.Button();
             this.openMultipleFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.nudIterations = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox_NN_Info.SuspendLayout();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_loadedImage)).BeginInit();
             this.groupBox_loadedKanji.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudIterations)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox_NN_Info
@@ -310,40 +307,11 @@
             this.openMultipleFileDialog.Filter = "Imagenes|*.jpg; *.png; *.bmp";
             this.openMultipleFileDialog.Multiselect = true;
             // 
-            // nudIterations
-            // 
-            this.nudIterations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudIterations.Location = new System.Drawing.Point(96, 417);
-            this.nudIterations.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudIterations.Name = "nudIterations";
-            this.nudIterations.Size = new System.Drawing.Size(39, 20);
-            this.nudIterations.TabIndex = 6;
-            this.nudIterations.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 419);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Iteraciones:";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(400, 447);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.nudIterations);
             this.Controls.Add(this.groupBox_loadedKanji);
             this.Controls.Add(this.button_runDynamics);
             this.Controls.Add(this.groupBox_NN_Info);
@@ -361,7 +329,6 @@
             this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_loadedImage)).EndInit();
             this.groupBox_loadedKanji.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudIterations)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -393,8 +360,6 @@
         private System.Windows.Forms.GroupBox groupBox_loadedKanji;
         private System.Windows.Forms.OpenFileDialog openMultipleFileDialog;
         private System.Windows.Forms.Button button_addNoise;
-        private System.Windows.Forms.NumericUpDown nudIterations;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button_edit;
     }
 }

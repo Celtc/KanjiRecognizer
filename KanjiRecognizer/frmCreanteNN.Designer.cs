@@ -38,6 +38,9 @@
             this.comboBox_gMethod = new System.Windows.Forms.ComboBox();
             this.label_gMethod = new System.Windows.Forms.Label();
             this.toolTip_gMethod = new System.Windows.Forms.ToolTip(this.components);
+            this.label_updSequence = new System.Windows.Forms.Label();
+            this.comboBox_updSequence = new System.Windows.Forms.ComboBox();
+            this.toolTip_updSequence = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider_frmCreateNN)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,6 +99,30 @@
             this.toolTip_gMethod.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip_gMethod.ToolTipTitle = "Métodos de generación de patrones";
             // 
+            // label_updSequence
+            // 
+            resources.ApplyResources(this.label_updSequence, "label_updSequence");
+            this.label_updSequence.Name = "label_updSequence";
+            this.toolTip_updSequence.SetToolTip(this.label_updSequence, resources.GetString("label_updSequence.ToolTip"));
+            this.toolTip_gMethod.SetToolTip(this.label_updSequence, resources.GetString("label_updSequence.ToolTip1"));
+            // 
+            // comboBox_updSequence
+            // 
+            this.comboBox_updSequence.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_updSequence.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox_updSequence, "comboBox_updSequence");
+            this.comboBox_updSequence.Name = "comboBox_updSequence";
+            // 
+            // toolTip_updSequence
+            // 
+            this.toolTip_updSequence.AutoPopDelay = 32766;
+            this.toolTip_updSequence.InitialDelay = 200;
+            this.toolTip_updSequence.IsBalloon = true;
+            this.toolTip_updSequence.ReshowDelay = 100;
+            this.toolTip_updSequence.ShowAlways = true;
+            this.toolTip_updSequence.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.toolTip_updSequence.ToolTipTitle = "Secuencias de Actualizado de Estados";
+            // 
             // frmCreanteNN
             // 
             this.AcceptButton = this.button_createNN;
@@ -104,6 +131,8 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.CancelButton = this.button_cancelFRM;
             this.ControlBox = false;
+            this.Controls.Add(this.label_updSequence);
+            this.Controls.Add(this.comboBox_updSequence);
             this.Controls.Add(this.label_gMethod);
             this.Controls.Add(this.comboBox_gMethod);
             this.Controls.Add(this.button_createNN);
@@ -130,5 +159,8 @@
         private System.Windows.Forms.Label label_gMethod;
         private System.Windows.Forms.ComboBox comboBox_gMethod;
         private System.Windows.Forms.ToolTip toolTip_gMethod;
+        private System.Windows.Forms.Label label_updSequence;
+        private System.Windows.Forms.ComboBox comboBox_updSequence;
+        private System.Windows.Forms.ToolTip toolTip_updSequence;
     }
 }

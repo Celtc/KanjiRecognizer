@@ -141,8 +141,7 @@ namespace KanjiRecognizer
             //Analiza el kanji
             Kanji result;
             Bitmap resultBitmap;
-            int iterations = (int) nudIterations.Value;
-            result = nnAPI.RecognizeKanji(currentImage, iterations, out resultBitmap);
+            result = nnAPI.RecognizeKanji(currentImage, out resultBitmap);
 
             //Muestra el resultado si existe, sino notifica
             if (result != null)

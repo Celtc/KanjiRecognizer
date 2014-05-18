@@ -52,13 +52,13 @@ namespace HopfieldNeuralNetwork
         /// <summary>
         /// Calculate the energy of current network.
         /// </summary>
-        private void CalculateEnergy()
+        private void CalculateEnergy(List<Neuron> neurons)
         {
             double tempE = 0;
             for (int i = 0; i < NeuronsCount; i++)
                 for (int j = 0; j < NeuronsCount; j++)
                     if (i != j)
-                        tempE += Matrix[i, j] * Neurons[i].State * Neurons[j].State;
+                        tempE += Matrix[i, j] * neurons[i].State * neurons[j].State;
             Energy = -1 * tempE / 2;
         }
         
@@ -145,34 +145,66 @@ namespace HopfieldNeuralNetwork
         /// </summary>
         /// <param name="initialState">A list of neurons which determines an initional state</param>
         /// <param name="triggerEnergyChange">A boolean indicating if it should trigger the energyChange event</param>
-        public void Run(List<Neuron> initialState, bool triggerEnergyChange)
+        public void Run(List<Neuron> initialState, List<double> heightMap, UpdateSequence updSequence, bool triggerEnergyChange = false)
         {
             this.Neurons = initialState;
-            int k = 1;
-            int h = 0;
-                while(k != 0)
+            bool isChanging = true;
+            while (isChanging)
+            {
+                isChanging = false;
+                var newState = this.Neurons;
+                for (int i = 0; i < NeuronsCount; i++)
                 {
-                    k = 0;
-                    for (int i = 0; i < NeuronsCount; i++)
+                    int neuronHeight = 0;
+                    if (updSequence == UpdateSequence.PseudoRandom)
                     {
-                        h = 0;
-                        for (int j = 0; j < NeuronsCount; j++)                        
-                          h += Matrix[i, j] * (Neurons[j].State);
-                        
-                        if (Neurons[i].ChangeState(h))
+                        var jArray = Enumerable.Range(0, NeuronsCount).ToArray();
+                        ShuffleArray(jArray);
+                        for (int j = 0; j < NeuronsCount; j++)
+                            neuronHeight += Matrix[i, jArray[j]] * (newState[j].State);
+                    }
+                    else
+                    {
+                        for (int j = 0; j < NeuronsCount; j++)
+                            neuronHeight += Matrix[i, j] * (Neurons[j].State);
+                    }
+
+                    double neuronMapHeight = 0;
+                    if (heightMap != null)
+                        neuronMapHeight = heightMap[i];
+
+                    if (newState[i].ChangeState(neuronHeight + neuronMapHeight))
+                    {
+                        isChanging = true;
+                        if (triggerEnergyChange)
                         {
-                            k++;
-                            if (triggerEnergyChange)
-                            {
-                                CalculateEnergy();
-                                OnEnergyChanged(new EnergyEventArgs(Energy, i));
-                            }
+                            CalculateEnergy(newState);
+                            OnEnergyChanged(new EnergyEventArgs(Energy, i));
                         }
                     }
                 }
-                CalculateEnergy();             
+                this.Neurons = newState;
+            }
+            CalculateEnergy(this.Neurons);
         }
 
+        /// <summary>
+        /// Shuffles an array of ints
+        /// </summary>
+        /// <param name="array">Array to shuffle</param>
+        private int[] ShuffleArray(int[] array)
+        {
+            Random r = new Random();
+            for (int i = array.Length; i > 0; i--)
+            {
+                int j = r.Next(i);
+                int k = array[j];
+                array[j] = array[i - 1];
+                array[i - 1] = k;
+            }
+            return array;
+        }
+   
         /// <summary>
         /// Occurs when the energy of neural network changes
         /// </summary>

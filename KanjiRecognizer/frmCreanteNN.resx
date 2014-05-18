@@ -144,13 +144,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label_nCount.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="textBox_nCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 15</value>
+    <value>148, 15</value>
   </data>
   <data name="textBox_nCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 20</value>
+    <value>117, 20</value>
   </data>
   <data name="textBox_nCount.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -169,10 +169,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBox_nCount.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="button_cancelFRM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>151, 79</value>
+    <value>149, 103</value>
   </data>
   <data name="button_cancelFRM.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -193,13 +193,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button_cancelFRM.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="button_createNN.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="button_createNN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>69, 79</value>
+    <value>67, 103</value>
   </data>
   <data name="button_createNN.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -220,7 +220,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button_createNN.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <metadata name="errorProvider_frmCreateNN.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -232,7 +232,91 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>294, 112</value>
+    <value>294, 136</value>
+  </data>
+  <data name="label_updSequence.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_updSequence.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
+  </data>
+  <data name="label_updSequence.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_updSequence.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 73</value>
+  </data>
+  <data name="label_updSequence.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 13</value>
+  </data>
+  <data name="label_updSequence.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="label_updSequence.Text" xml:space="preserve">
+    <value>Secuencia de actualizado</value>
+  </data>
+  <metadata name="toolTip_updSequence.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>364, 17</value>
+  </metadata>
+  <data name="label_updSequence.ToolTip" xml:space="preserve">
+    <value>Synchronous: Todas las neuronas actualizan simultaneamente sus estados basandose en el 
+estado global actual de la red. Esto se repite en n iteraciones o etapas hasta que se 
+logra estabilizar la red. De esta forma los cambios de estado no se ven influenciados 
+por cambios anteriores en otras neuronas dentro de una misma iteración.
+
+PseudoRandom: Al igual que el actualizado synchronous se realiza en etapas, evaluando 
+todas las neuronas en cada una de las etapas. Sin embargo dentro de una misma etapa las 
+actualizaciones consecutivas se ven influciadas por actualizaciones previas realizadas 
+en la misma etapa a otras neuronas. El orden en que se actualizan es generado de manera 
+random.</value>
+  </data>
+  <metadata name="toolTip_gMethod.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>218, 17</value>
+  </metadata>
+  <data name="label_updSequence.ToolTip1" xml:space="preserve">
+    <value>Synchronous: Todas las neuronas actualizan simultaneamente sus estados basandose en el 
+estado global actual de la red. Esto se repite en n iteraciones o etapas hasta que se 
+logra estabilizar la red. De esta forma los cambios de estado no se ven influenciados 
+por cambios anteriores en otras neuronas dentro de una misma iteración.
+
+PseudoRandom: Al igual que el actualizado synchronous se realiza en etapas, evaluando 
+todas las neuronas en cada una de las etapas. Sin embargo dentro de una misma etapa las 
+actualizaciones consecutivas se ven influciadas por actualizaciones previas realizadas 
+en la misma etapa a otras neuronas. El orden en que se actualizan es generado de manera 
+random.</value>
+  </data>
+  <data name="&gt;&gt;label_updSequence.Name" xml:space="preserve">
+    <value>label_updSequence</value>
+  </data>
+  <data name="&gt;&gt;label_updSequence.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_updSequence.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label_updSequence.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="comboBox_updSequence.Location" type="System.Drawing.Point, System.Drawing">
+    <value>148, 70</value>
+  </data>
+  <data name="comboBox_updSequence.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 21</value>
+  </data>
+  <data name="comboBox_updSequence.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;comboBox_updSequence.Name" xml:space="preserve">
+    <value>comboBox_updSequence</value>
+  </data>
+  <data name="&gt;&gt;comboBox_updSequence.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox_updSequence.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;comboBox_updSequence.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="label_gMethod.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -252,9 +336,6 @@
   <data name="label_gMethod.Text" xml:space="preserve">
     <value>Generación del patrón</value>
   </data>
-  <metadata name="toolTip_gMethod.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>218, 17</value>
-  </metadata>
   <data name="label_gMethod.ToolTip" xml:space="preserve">
     <value>Normal: El patrón sera generado a partir del contenido de la imagen, una vez escalada para
 que coincida en cantidad de pixeles a la cantidad de neuronas.
@@ -273,13 +354,13 @@ el reconocimiento se limitará a imágenes exactamente iguales a las aprendidas.
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label_gMethod.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="comboBox_gMethod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 41</value>
+    <value>148, 41</value>
   </data>
   <data name="comboBox_gMethod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 21</value>
+    <value>117, 21</value>
   </data>
   <data name="comboBox_gMethod.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -294,13 +375,13 @@ el reconocimiento se limitará a imágenes exactamente iguales a las aprendidas.
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comboBox_gMethod.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Crear Red Neuronal</value>
+    <value>Crear Red Neuronal (Hopfield)</value>
   </data>
   <data name="&gt;&gt;errorProvider_frmCreateNN.Name" xml:space="preserve">
     <value>errorProvider_frmCreateNN</value>
@@ -312,6 +393,12 @@ el reconocimiento se limitará a imágenes exactamente iguales a las aprendidas.
     <value>toolTip_gMethod</value>
   </data>
   <data name="&gt;&gt;toolTip_gMethod.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolTip_updSequence.Name" xml:space="preserve">
+    <value>toolTip_updSequence</value>
+  </data>
+  <data name="&gt;&gt;toolTip_updSequence.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
