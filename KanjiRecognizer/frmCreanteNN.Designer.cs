@@ -104,7 +104,6 @@
             resources.ApplyResources(this.label_updSequence, "label_updSequence");
             this.label_updSequence.Name = "label_updSequence";
             this.toolTip_updSequence.SetToolTip(this.label_updSequence, resources.GetString("label_updSequence.ToolTip"));
-            this.toolTip_gMethod.SetToolTip(this.label_updSequence, resources.GetString("label_updSequence.ToolTip1"));
             // 
             // comboBox_updSequence
             // 

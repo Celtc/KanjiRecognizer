@@ -270,21 +270,6 @@ actualizaciones consecutivas se ven influciadas por actualizaciones previas real
 en la misma etapa a otras neuronas. El orden en que se actualizan es generado de manera 
 random.</value>
   </data>
-  <metadata name="toolTip_gMethod.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>218, 17</value>
-  </metadata>
-  <data name="label_updSequence.ToolTip1" xml:space="preserve">
-    <value>Synchronous: Todas las neuronas actualizan simultaneamente sus estados basandose en el 
-estado global actual de la red. Esto se repite en n iteraciones o etapas hasta que se 
-logra estabilizar la red. De esta forma los cambios de estado no se ven influenciados 
-por cambios anteriores en otras neuronas dentro de una misma iteración.
-
-PseudoRandom: Al igual que el actualizado synchronous se realiza en etapas, evaluando 
-todas las neuronas en cada una de las etapas. Sin embargo dentro de una misma etapa las 
-actualizaciones consecutivas se ven influciadas por actualizaciones previas realizadas 
-en la misma etapa a otras neuronas. El orden en que se actualizan es generado de manera 
-random.</value>
-  </data>
   <data name="&gt;&gt;label_updSequence.Name" xml:space="preserve">
     <value>label_updSequence</value>
   </data>
@@ -336,6 +321,9 @@ random.</value>
   <data name="label_gMethod.Text" xml:space="preserve">
     <value>Generación del patrón</value>
   </data>
+  <metadata name="toolTip_gMethod.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>218, 17</value>
+  </metadata>
   <data name="label_gMethod.ToolTip" xml:space="preserve">
     <value>Normal: El patrón sera generado a partir del contenido de la imagen, una vez escalada para
 que coincida en cantidad de pixeles a la cantidad de neuronas.
