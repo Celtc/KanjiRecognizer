@@ -1,4 +1,4 @@
 KanjiRecognizer
 ===============
 
-Kanji recognizer using a Hopfield artificial neural network.
+Kanji recognizer using an artificial neural network, based on Hopfield or Kohonem SOM.
