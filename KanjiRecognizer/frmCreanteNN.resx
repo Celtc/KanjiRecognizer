@@ -118,61 +118,64 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label_nCount.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label_tab1_nCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label_nCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 18</value>
+  <data name="label_tab1_nCount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 14</value>
   </data>
-  <data name="label_nCount.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="label_tab1_nCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
   </data>
-  <data name="label_nCount.TabIndex" type="System.Int32, mscorlib">
+  <data name="label_tab1_nCount.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="label_nCount.Text" xml:space="preserve">
+  <data name="label_tab1_nCount.Text" xml:space="preserve">
     <value>N° de Neuronas</value>
   </data>
-  <data name="&gt;&gt;label_nCount.Name" xml:space="preserve">
-    <value>label_nCount</value>
+  <data name="&gt;&gt;label_tab1_nCount.Name" xml:space="preserve">
+    <value>label_tab1_nCount</value>
   </data>
-  <data name="&gt;&gt;label_nCount.Type" xml:space="preserve">
+  <data name="&gt;&gt;label_tab1_nCount.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label_nCount.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;label_tab1_nCount.Parent" xml:space="preserve">
+    <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;label_nCount.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;label_tab1_nCount.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="textBox_nCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 15</value>
+  <data name="textBox_tab1_nCount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 11</value>
   </data>
-  <data name="textBox_nCount.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="textBox_tab1_nCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 20</value>
   </data>
-  <data name="textBox_nCount.TabIndex" type="System.Int32, mscorlib">
+  <data name="textBox_tab1_nCount.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="textBox_nCount.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+  <data name="textBox_tab1_nCount.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;textBox_nCount.Name" xml:space="preserve">
-    <value>textBox_nCount</value>
+  <data name="&gt;&gt;textBox_tab1_nCount.Name" xml:space="preserve">
+    <value>textBox_tab1_nCount</value>
   </data>
-  <data name="&gt;&gt;textBox_nCount.Type" xml:space="preserve">
+  <data name="&gt;&gt;textBox_tab1_nCount.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;textBox_nCount.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;textBox_tab1_nCount.Parent" xml:space="preserve">
+    <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;textBox_nCount.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;textBox_tab1_nCount.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="button_cancelFRM.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="button_cancelFRM.Location" type="System.Drawing.Point, System.Drawing">
-    <value>151, 129</value>
+    <value>158, 336</value>
   </data>
   <data name="button_cancelFRM.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -193,13 +196,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button_cancelFRM.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>2</value>
+  </data>
+  <data name="button_createNN.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="button_createNN.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="button_createNN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>69, 129</value>
+    <value>77, 336</value>
   </data>
   <data name="button_createNN.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -220,7 +226,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button_createNN.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>1</value>
   </data>
   <metadata name="errorProvider_frmCreateNN.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -232,94 +238,97 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>294, 164</value>
+    <value>304, 371</value>
   </data>
-  <data name="nudThreshold.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 101</value>
+  <data name="tabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="nudThreshold.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="nud_tab1_threshold.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 97</value>
+  </data>
+  <data name="nud_tab1_threshold.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 20</value>
   </data>
-  <data name="nudThreshold.TabIndex" type="System.Int32, mscorlib">
+  <data name="nud_tab1_threshold.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;nudThreshold.Name" xml:space="preserve">
-    <value>nudThreshold</value>
+  <data name="&gt;&gt;nud_tab1_threshold.Name" xml:space="preserve">
+    <value>nud_tab1_threshold</value>
   </data>
-  <data name="&gt;&gt;nudThreshold.Type" xml:space="preserve">
+  <data name="&gt;&gt;nud_tab1_threshold.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;nudThreshold.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;nud_tab1_threshold.Parent" xml:space="preserve">
+    <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;nudThreshold.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;nud_tab1_threshold.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="label_threshold.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label_tab1_threshold.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label_threshold.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="label_tab1_threshold.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
   </data>
-  <data name="label_threshold.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="label_tab1_threshold.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label_threshold.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 103</value>
+  <data name="label_tab1_threshold.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 99</value>
   </data>
-  <data name="label_threshold.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="label_tab1_threshold.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 13</value>
   </data>
-  <data name="label_threshold.TabIndex" type="System.Int32, mscorlib">
+  <data name="label_tab1_threshold.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="label_threshold.Text" xml:space="preserve">
+  <data name="label_tab1_threshold.Text" xml:space="preserve">
     <value>Threshold</value>
   </data>
   <metadata name="toolTip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>218, 17</value>
   </metadata>
-  <data name="label_threshold.ToolTip" xml:space="preserve">
+  <data name="label_tab1_threshold.ToolTip" xml:space="preserve">
     <value>Threshold:
 
 Valor utilizado al momento de realizar el pasaje a monocromo 
 de la imagen. Valores mayores aumentaran el umbral de reco-
 cimiento de pixeles que seran intepretados como negros.</value>
   </data>
-  <data name="&gt;&gt;label_threshold.Name" xml:space="preserve">
-    <value>label_threshold</value>
+  <data name="&gt;&gt;label_tab1_threshold.Name" xml:space="preserve">
+    <value>label_tab1_threshold</value>
   </data>
-  <data name="&gt;&gt;label_threshold.Type" xml:space="preserve">
+  <data name="&gt;&gt;label_tab1_threshold.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label_threshold.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;label_tab1_threshold.Parent" xml:space="preserve">
+    <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;label_threshold.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;label_tab1_threshold.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="label_updSequence.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label_tab1_updSequence.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label_updSequence.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="label_tab1_updSequence.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
   </data>
-  <data name="label_updSequence.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="label_tab1_updSequence.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="label_updSequence.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 73</value>
+  <data name="label_tab1_updSequence.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 69</value>
   </data>
-  <data name="label_updSequence.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="label_tab1_updSequence.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 13</value>
   </data>
-  <data name="label_updSequence.TabIndex" type="System.Int32, mscorlib">
+  <data name="label_tab1_updSequence.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="label_updSequence.Text" xml:space="preserve">
+  <data name="label_tab1_updSequence.Text" xml:space="preserve">
     <value>Secuencia de actualizado</value>
   </data>
-  <data name="label_updSequence.ToolTip" xml:space="preserve">
+  <data name="label_tab1_updSequence.ToolTip" xml:space="preserve">
     <value>Secuencias posibles para el actualizado de los estados:
 
 Synchronous: Todas las neuronas actualizan simultaneamente sus estados basandose en el 
@@ -333,58 +342,79 @@ actualizaciones consecutivas se ven influenciadas por actualizaciones previas re
 en la misma etapa a otras neuronas. El orden en que se actualizan es generado de manera 
 random.</value>
   </data>
-  <data name="&gt;&gt;label_updSequence.Name" xml:space="preserve">
-    <value>label_updSequence</value>
+  <data name="&gt;&gt;label_tab1_updSequence.Name" xml:space="preserve">
+    <value>label_tab1_updSequence</value>
   </data>
-  <data name="&gt;&gt;label_updSequence.Type" xml:space="preserve">
+  <data name="&gt;&gt;label_tab1_updSequence.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label_updSequence.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;label_tab1_updSequence.Parent" xml:space="preserve">
+    <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;label_updSequence.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;label_tab1_updSequence.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="comboBox_updSequence.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 70</value>
+  <data name="comboBox_tab1_updSequence.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 66</value>
   </data>
-  <data name="comboBox_updSequence.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="comboBox_tab1_updSequence.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 21</value>
   </data>
-  <data name="comboBox_updSequence.TabIndex" type="System.Int32, mscorlib">
+  <data name="comboBox_tab1_updSequence.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="&gt;&gt;comboBox_updSequence.Name" xml:space="preserve">
-    <value>comboBox_updSequence</value>
+  <data name="&gt;&gt;comboBox_tab1_updSequence.Name" xml:space="preserve">
+    <value>comboBox_tab1_updSequence</value>
   </data>
-  <data name="&gt;&gt;comboBox_updSequence.Type" xml:space="preserve">
+  <data name="&gt;&gt;comboBox_tab1_updSequence.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;comboBox_updSequence.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;comboBox_tab1_updSequence.Parent" xml:space="preserve">
+    <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;comboBox_updSequence.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;comboBox_tab1_updSequence.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="label_gMethod.AutoSize" type="System.Boolean, mscorlib">
+  <data name="comboBox_tab1_gMethod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 37</value>
+  </data>
+  <data name="comboBox_tab1_gMethod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 21</value>
+  </data>
+  <data name="comboBox_tab1_gMethod.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;comboBox_tab1_gMethod.Name" xml:space="preserve">
+    <value>comboBox_tab1_gMethod</value>
+  </data>
+  <data name="&gt;&gt;comboBox_tab1_gMethod.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comboBox_tab1_gMethod.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;comboBox_tab1_gMethod.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label_tab1_gMethod.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label_gMethod.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="label_tab1_gMethod.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
   </data>
-  <data name="label_gMethod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 44</value>
+  <data name="label_tab1_gMethod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 40</value>
   </data>
-  <data name="label_gMethod.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="label_tab1_gMethod.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 13</value>
   </data>
-  <data name="label_gMethod.TabIndex" type="System.Int32, mscorlib">
+  <data name="label_tab1_gMethod.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="label_gMethod.Text" xml:space="preserve">
+  <data name="label_tab1_gMethod.Text" xml:space="preserve">
     <value>Generación del patrón</value>
   </data>
-  <data name="label_gMethod.ToolTip" xml:space="preserve">
+  <data name="label_tab1_gMethod.ToolTip" xml:space="preserve">
     <value>Metodos de generación del patrón:
 
 Normal: El patrón sera generado a partir del contenido de la imagen, una vez escalada para
@@ -394,38 +424,619 @@ Hashing: Este método aumentará la cantidad de patrones reconocibles al aprende
 hash generados a partir de la imagen, incrementando la ortogonalidad de los patrones. Pero
 el reconocimiento se limitará a imágenes exactamente iguales a las aprendidas.</value>
   </data>
-  <data name="&gt;&gt;label_gMethod.Name" xml:space="preserve">
-    <value>label_gMethod</value>
+  <data name="&gt;&gt;label_tab1_gMethod.Name" xml:space="preserve">
+    <value>label_tab1_gMethod</value>
   </data>
-  <data name="&gt;&gt;label_gMethod.Type" xml:space="preserve">
+  <data name="&gt;&gt;label_tab1_gMethod.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label_gMethod.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;label_tab1_gMethod.Parent" xml:space="preserve">
+    <value>tabPage1</value>
   </data>
-  <data name="&gt;&gt;label_gMethod.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;label_tab1_gMethod.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
-  <data name="comboBox_gMethod.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 41</value>
+  <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
   </data>
-  <data name="comboBox_gMethod.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 21</value>
+  <data name="tabPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
   </data>
-  <data name="comboBox_gMethod.TabIndex" type="System.Int32, mscorlib">
+  <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 284</value>
+  </data>
+  <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Hopfield</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Name" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.Parent" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabPage1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label_tab2_initialRadius.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_tab2_initialRadius.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_tab2_initialRadius.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 102</value>
+  </data>
+  <data name="label_tab2_initialRadius.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="label_tab2_initialRadius.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="label_tab2_initialRadius.Text" xml:space="preserve">
+    <value>Radio (Inicial)</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_initialRadius.Name" xml:space="preserve">
+    <value>label_tab2_initialRadius</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_initialRadius.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_initialRadius.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_initialRadius.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label_tab2_endingRadius.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_tab2_endingRadius.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_tab2_endingRadius.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 128</value>
+  </data>
+  <data name="label_tab2_endingRadius.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 13</value>
+  </data>
+  <data name="label_tab2_endingRadius.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="label_tab2_endingRadius.Text" xml:space="preserve">
+    <value>Radio (Final)</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_endingRadius.Name" xml:space="preserve">
+    <value>label_tab2_endingRadius</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_endingRadius.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_endingRadius.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_endingRadius.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="textBox_tab2_initialRadius.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 99</value>
+  </data>
+  <data name="textBox_tab2_initialRadius.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 20</value>
+  </data>
+  <data name="textBox_tab2_initialRadius.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="textBox_tab2_initialRadius.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_initialRadius.Name" xml:space="preserve">
+    <value>textBox_tab2_initialRadius</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_initialRadius.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_initialRadius.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_initialRadius.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;comboBox_gMethod.Name" xml:space="preserve">
-    <value>comboBox_gMethod</value>
+  <data name="textBox_tab2_endingRadius.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 125</value>
   </data>
-  <data name="&gt;&gt;comboBox_gMethod.Type" xml:space="preserve">
+  <data name="textBox_tab2_endingRadius.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 20</value>
+  </data>
+  <data name="textBox_tab2_endingRadius.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="textBox_tab2_endingRadius.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_endingRadius.Name" xml:space="preserve">
+    <value>textBox_tab2_endingRadius</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_endingRadius.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_endingRadius.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_endingRadius.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label_tab2_iterations.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_tab2_iterations.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_tab2_iterations.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 24</value>
+  </data>
+  <data name="label_tab2_iterations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 13</value>
+  </data>
+  <data name="label_tab2_iterations.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="label_tab2_iterations.Text" xml:space="preserve">
+    <value>Iteraciones</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_iterations.Name" xml:space="preserve">
+    <value>label_tab2_iterations</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_iterations.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_iterations.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_iterations.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="textBox_tab2_iterations.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 21</value>
+  </data>
+  <data name="textBox_tab2_iterations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 20</value>
+  </data>
+  <data name="textBox_tab2_iterations.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="textBox_tab2_iterations.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_iterations.Name" xml:space="preserve">
+    <value>textBox_tab2_iterations</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_iterations.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_iterations.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_iterations.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label_tab2_initialRate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_tab2_initialRate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_tab2_initialRate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 50</value>
+  </data>
+  <data name="label_tab2_initialRate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 13</value>
+  </data>
+  <data name="label_tab2_initialRate.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="label_tab2_initialRate.Text" xml:space="preserve">
+    <value>α (Inicial)</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_initialRate.Name" xml:space="preserve">
+    <value>label_tab2_initialRate</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_initialRate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_initialRate.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_initialRate.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label_tab2_endingRate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_tab2_endingRate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_tab2_endingRate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 76</value>
+  </data>
+  <data name="label_tab2_endingRate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="label_tab2_endingRate.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="label_tab2_endingRate.Text" xml:space="preserve">
+    <value>α (Final)</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_endingRate.Name" xml:space="preserve">
+    <value>label_tab2_endingRate</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_endingRate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_endingRate.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_endingRate.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="textBox_tab2_initialRate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 47</value>
+  </data>
+  <data name="textBox_tab2_initialRate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 20</value>
+  </data>
+  <data name="textBox_tab2_initialRate.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="textBox_tab2_initialRate.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_initialRate.Name" xml:space="preserve">
+    <value>textBox_tab2_initialRate</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_initialRate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_initialRate.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_initialRate.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="textBox_tab2_endingRate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>135, 73</value>
+  </data>
+  <data name="textBox_tab2_endingRate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 20</value>
+  </data>
+  <data name="textBox_tab2_endingRate.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="textBox_tab2_endingRate.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_endingRate.Name" xml:space="preserve">
+    <value>textBox_tab2_endingRate</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_endingRate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_endingRate.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_endingRate.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 63</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>258, 156</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Aprendizaje</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label_tab2_n2Count.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_tab2_n2Count.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_tab2_n2Count.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 40</value>
+  </data>
+  <data name="label_tab2_n2Count.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 13</value>
+  </data>
+  <data name="label_tab2_n2Count.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="label_tab2_n2Count.Text" xml:space="preserve">
+    <value>N° de Neuronas (Salida)</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_n2Count.Name" xml:space="preserve">
+    <value>label_tab2_n2Count</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_n2Count.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_n2Count.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_n2Count.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="textBox_tab2_n2Count.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 37</value>
+  </data>
+  <data name="textBox_tab2_n2Count.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 20</value>
+  </data>
+  <data name="textBox_tab2_n2Count.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="textBox_tab2_n2Count.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_n2Count.Name" xml:space="preserve">
+    <value>textBox_tab2_n2Count</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_n2Count.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_n2Count.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_n2Count.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label_tab2_n1Count.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_tab2_n1Count.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_tab2_n1Count.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 14</value>
+  </data>
+  <data name="label_tab2_n1Count.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 13</value>
+  </data>
+  <data name="label_tab2_n1Count.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="label_tab2_n1Count.Text" xml:space="preserve">
+    <value>N° de Neuronas (Entrada)</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_n1Count.Name" xml:space="preserve">
+    <value>label_tab2_n1Count</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_n1Count.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_n1Count.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_n1Count.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="nud_tab2_threshold.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 252</value>
+  </data>
+  <data name="nud_tab2_threshold.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 20</value>
+  </data>
+  <data name="nud_tab2_threshold.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;nud_tab2_threshold.Name" xml:space="preserve">
+    <value>nud_tab2_threshold</value>
+  </data>
+  <data name="&gt;&gt;nud_tab2_threshold.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nud_tab2_threshold.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;nud_tab2_threshold.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="textBox_tab2_n1Count.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 11</value>
+  </data>
+  <data name="textBox_tab2_n1Count.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 20</value>
+  </data>
+  <data name="textBox_tab2_n1Count.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="textBox_tab2_n1Count.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_n1Count.Name" xml:space="preserve">
+    <value>textBox_tab2_n1Count</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_n1Count.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_n1Count.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;textBox_tab2_n1Count.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label_tab2_threshold.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_tab2_threshold.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
+  </data>
+  <data name="label_tab2_threshold.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_tab2_threshold.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 254</value>
+  </data>
+  <data name="label_tab2_threshold.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
+  </data>
+  <data name="label_tab2_threshold.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="label_tab2_threshold.Text" xml:space="preserve">
+    <value>Threshold</value>
+  </data>
+  <data name="label_tab2_threshold.ToolTip" xml:space="preserve">
+    <value>Threshold:
+
+Valor utilizado al momento de realizar el pasaje a monocromo 
+de la imagen. Valores mayores aumentaran el umbral de reco-
+cimiento de pixeles que seran intepretados como negros.</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_threshold.Name" xml:space="preserve">
+    <value>label_tab2_threshold</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_threshold.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_threshold.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_threshold.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="comboBox_tab2_gMethod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 225</value>
+  </data>
+  <data name="comboBox_tab2_gMethod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 21</value>
+  </data>
+  <data name="comboBox_tab2_gMethod.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;comboBox_tab2_gMethod.Name" xml:space="preserve">
+    <value>comboBox_tab2_gMethod</value>
+  </data>
+  <data name="&gt;&gt;comboBox_tab2_gMethod.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;comboBox_gMethod.Parent" xml:space="preserve">
+  <data name="&gt;&gt;comboBox_tab2_gMethod.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;comboBox_tab2_gMethod.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="label_tab2_gMethod.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label_tab2_gMethod.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Underline</value>
+  </data>
+  <data name="label_tab2_gMethod.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label_tab2_gMethod.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 228</value>
+  </data>
+  <data name="label_tab2_gMethod.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 13</value>
+  </data>
+  <data name="label_tab2_gMethod.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="label_tab2_gMethod.Text" xml:space="preserve">
+    <value>Generación del patrón</value>
+  </data>
+  <data name="label_tab2_gMethod.ToolTip" xml:space="preserve">
+    <value>Metodos de generación del patrón:
+
+Normal: El patrón sera generado a partir del contenido de la imagen, una vez escalada para
+que coincida en cantidad de pixeles a la cantidad de neuronas.
+
+Hashing: Este método aumentará la cantidad de patrones reconocibles al aprender códigos
+hash generados a partir de la imagen, incrementando la ortogonalidad de los patrones. Pero
+el reconocimiento se limitará a imágenes exactamente iguales a las aprendidas.</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_gMethod.Name" xml:space="preserve">
+    <value>label_tab2_gMethod</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_gMethod.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_gMethod.Parent" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;label_tab2_gMethod.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="tabPage2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 284</value>
+  </data>
+  <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>KohonenSOM</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Name" xml:space="preserve">
+    <value>tabPage2</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.Parent" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabPage2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="tabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>278, 310</value>
+  </data>
+  <data name="tabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;tabControl.Name" xml:space="preserve">
+    <value>tabControl</value>
+  </data>
+  <data name="&gt;&gt;tabControl.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;comboBox_gMethod.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;tabControl.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

@@ -110,8 +110,8 @@ namespace KanjiRecognizer.Source
         /// </summary>
         /// <param name="sourceImage">Imagen a partir de la cual se generara el patrón</param>
         /// <param name="pattern">Patrón resultante</param>
-        /// <param name="accesHash">Hash que identifica unívocamente este patrón</param>
-        protected virtual void generatePattern_Normal(Image sourceImage, out Pattern pattern, out string accessHash)
+        /// <param name="patternHash">Hash que identifica unívocamente este patrón</param>
+        protected virtual void generatePattern_Normal(Image sourceImage, out Pattern pattern, out string patternHash)
         {
             //Convierte la imagen a bitmap
             Bitmap sourceBitmap = ImageAPI.AlltoBMP(sourceImage);
@@ -121,7 +121,7 @@ namespace KanjiRecognizer.Source
             pattern = patternFromBitmap(sourceBitmap, Threshold, out processedBitmap);
 
             //Genera el hash a partir del bitmap de salida
-            accessHash = ImageAPI.GenerateSHA1HashFromImage(processedBitmap);
+            patternHash = ImageAPI.GenerateSHA1HashFromImage(processedBitmap);
 
             return;
         }
@@ -132,10 +132,10 @@ namespace KanjiRecognizer.Source
         /// <param name="sourceImage">Imagen a partir de la cual se generara el patrón</param>
         /// <param name="pattern">Patrón resultante</param>
         /// <param name="heightmap">Heightmap del patrón generado</param>
-        /// <param name="accesHash">Hash que identifica unívocamente este patrón</param>
-        protected virtual void generatePattern_Heightmap(Image sourceImage, out Pattern pattern, out List<double> heightmap, out string accessHash)
+        /// <param name="patternHash">Hash que identifica unívocamente este patrón</param>
+        protected virtual void generatePattern_Heightmap(Image sourceImage, out Pattern pattern, out List<double> heightmap, out string patternHash)
         {
-            generatePattern_Normal(sourceImage, out pattern, out accessHash);
+            generatePattern_Normal(sourceImage, out pattern, out patternHash);
 
             heightmap = calculateHeightmap(bitmapFromPattern(pattern));
 
@@ -148,8 +148,8 @@ namespace KanjiRecognizer.Source
         /// </summary>
         /// <param name="sourceImage">Imagen a partir de la cual se generara el patrón</param>
         /// <param name="pattern">Patrón resultante</param>
-        /// <param name="accesHash">Hash que identifica unívocamente este patrón</param>
-        protected virtual void generatePattern_Hashing(Image sourceImage, out Pattern pattern, out string accessHash)
+        /// <param name="patternHash">Hash que identifica unívocamente este patrón</param>
+        protected virtual void generatePattern_Hashing(Image sourceImage, out Pattern pattern, out string patternHash)
         {
             //Extrae un hash de tantos bits como neuronas a partir de la imagen
             BitArray bitHash = ImageAPI.GenerateBitHashFromImage(sourceImage, InputSize);
@@ -159,7 +159,7 @@ namespace KanjiRecognizer.Source
             pattern = patternFromBithash(bitHash, out processedBitmap);
 
             //Genera el hash a partir del bitmap de salida
-            accessHash = ImageAPI.GenerateSHA1HashFromImage(processedBitmap);
+            patternHash = ImageAPI.GenerateSHA1HashFromImage(processedBitmap);
 
             return;
         }

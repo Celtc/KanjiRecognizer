@@ -32,7 +32,7 @@ namespace KanjiRecognizer.Source
 
         public override int NeuronsCount
         {
-            get { return somNN.Layers[0].Neurons.ToArray().Length + somNN.Layers[1].Neurons.ToArray().Length; }
+            get { return InputSize + somNN.Layers[0].Neurons.ToArray().Length; }
         }
 
         public int OutputSize { get; private set; }
@@ -82,29 +82,35 @@ namespace KanjiRecognizer.Source
             foreach(var kanji in allKanjis)
             {
                 //Dependiendo del modo obj de aprendizaje genera el patron
-                string accessHash = string.Empty;
+                string imageHash = string.Empty;
                 Pattern pattern = null;
                 switch (Method)
                 {
                     case GenerationMethod.Normal:
                     case GenerationMethod.Heightmap:
-                        generatePattern_Normal(kanji.sourceImage, out pattern, out accessHash);
+                        generatePattern_Normal(kanji.sourceImage, out pattern, out imageHash);
                         break;
 
                     case GenerationMethod.Hashing:
-                        generatePattern_Hashing(kanji.sourceImage, out pattern, out accessHash);
+                        generatePattern_Hashing(kanji.sourceImage, out pattern, out imageHash);
                         break;
                 }
 
                 // Lo agrega a la lista de patrones a aprender
                 allPatterns.Add(pattern);
-
-                // Guarda el kanji en el diccionario
-                learnedKanjis.Add(accessHash, kanji);
             }
 
             // Aprende los patrones
-            teachPatterns(allPatterns);            
+            var classes = teachPatterns(allPatterns);
+            if (classes.GroupBy(i => i).Where(g => g.Count() > 1).ToList().Count > 0)
+                throw new Exception("No se pudo distinguir la diferencia de clase entre dos kanjis.");
+
+            // Para cada patron busca la neurona representante
+            for (int i = 0; i < allKanjis.Count; i++)
+            {
+                // Guarda el kanji en el diccionario
+                learnedKanjis.Add(classes[i].ToString(), allKanjis[i]);
+            }
         }
 
         /// <summary>
@@ -116,40 +122,34 @@ namespace KanjiRecognizer.Source
         /// <param name="resultBitmap">Imagen devuelta por la red luego del analisis</param>
         public override Kanji RecognizeKanji(Image sourceImage, out Bitmap resultBitmap)
         {
-            //Dependiendo del modo obj de aprendizaje
-            List<double> heightmap = null;
+            // Dependiendo del modo obj de aprendizaje
             Pattern initialPattern = null;
             string accessHash = string.Empty;
             switch (Method)
             {
                 case GenerationMethod.Normal:
+                case GenerationMethod.Heightmap:
                     generatePattern_Normal(sourceImage, out initialPattern, out accessHash);
                     break;
 
                 case GenerationMethod.Hashing:
                     generatePattern_Hashing(sourceImage, out initialPattern, out accessHash);
                     break;
-
-                case GenerationMethod.Heightmap:
-                    generatePattern_Heightmap(sourceImage, out initialPattern, out heightmap, out accessHash);
-                    break;
             }
             
-            //Diagnostica el patron
-            var returnedPattern = recognizePattern(initialPattern, heightmap);
+            // Clasifica el patron
+            var patternClass = classifyPattern(initialPattern);
 
-            //Busca si el resultado es un patron aprendido o un minimo de energia local no esperado
-            //Para esto extrae el bitmap del patron resultante y lo busca en los aprendidos a traves de su hash
-            resultBitmap = bitmapFromPattern(returnedPattern);
-
+            // Busca la clase en el diccionario
             Kanji recognizedKanji = null;
             try
             {
-                string learnedHash = learnedKanjis.Keys.ElementAt(0);
-                string resultingHash = ImageAPI.GenerateSHA1HashFromImage(resultBitmap);
-                recognizedKanji = learnedKanjis[resultingHash];
+                recognizedKanji = learnedKanjis[patternClass.ToString()];
             }
             catch { }
+
+            // El bitmap de salida sera igual a la imagen original
+            resultBitmap = bitmapFromPattern(initialPattern);
 
             return recognizedKanji;
         }
@@ -213,16 +213,18 @@ namespace KanjiRecognizer.Source
         #region Metodos Privados
 
         /// <summary>
-        /// Enseña un patron a la red.
+        /// Enseña un patron a la red. Devuelve una lista con el numero de neurona representante de cada uno
         /// </summary>
         /// <param name="pattern">Patron a aprender</param>
-        private void teachPatterns(List<Pattern> patterns)
+        /// <returns>Lista de ints que representan los numeros de neuronas representantes para cada clase o patron</returns>
+        private List<int> teachPatterns(List<Pattern> patterns)
         {
             // Crea un entrenador
-            SOMLearning trainer = new SOMLearning(somNN, SqrtInputSize, SqrtInputSize);
+            var sqrtOutputSize = (int)Math.Sqrt(OutputSize);
+            SOMLearning trainer = new SOMLearning(somNN, sqrtOutputSize, sqrtOutputSize);
 
             // Crea el set de datos a entrenar
-            var trainingSet = generateTrainingSet(patterns);
+            var trainingSet = generateInputSet(patterns);
 
             // Iteraciones de aprendizaje
             for (int i = 0; i < LearningIterations; i++)
@@ -235,46 +237,49 @@ namespace KanjiRecognizer.Source
                 // Ejecuta la corrida
                 trainer.RunEpoch(trainingSet);
             }
+
+            // Genera la lista de clases para cada patron aprendido
+            var classes = new List<int>(patterns.Count);
+            foreach(var pattern in patterns)
+                classes.Add(classifyPattern(pattern));
+
+            return classes;
         }
 
         /// <summary>
-        /// Diagnostica un patrón tantas veces como iteraciones se especifiquen.
-        /// Devuelve el patrón resultante.
+        /// Clasifica un patron devolviendo el numero de neurona mas cercano (menor distancia)
         /// </summary>
-        /// <param name="inPattern">Patrón inicial</param>
-        /// <param name="heightmap">Heightmap utilizado para el diagnostico, puede ser null</param>
-        private Pattern recognizePattern(Pattern inPattern, List<double> heightmap)
+        /// <param name="pattern">Patron a clasificar</param>
+        /// <returns>Numero de neurona representante de una clase</returns>
+        private int classifyPattern(Pattern pattern)
         {
-            throw new NotImplementedException();
-        //    bool heightmapMethod = Method == GenerationMethod.Heightmap;
-        //    List<Neuron> outputNeurons = patternToNeurons(inPattern);
-        //    List<Neuron> currentState;
-
-        //    do
-        //    {
-        //        hopfieldNN.Run(outputNeurons, heightmap, UpdSequence);
-        //        currentState = hopfieldNN.Neurons;
-        //        if (heightmapMethod && currentState == outputNeurons)
-        //            break;
-        //        else
-        //            outputNeurons = currentState;
-        //    } while (heightmapMethod);
-
-        //    return neuronsToPattern(outputNeurons);
+            // Computa el patorn en la red y solicita la neurona ganadora
+            somNN.Compute(generateInput(pattern));
+            return somNN.GetWinner();
         }
 
         /// <summary>
-        /// Genera un training set a partir de una lista de patrones graficos
+        /// Genera un input set a partir de una lista de patrones graficos
         /// </summary>
         /// <param name="patterns">Lista de patrones graficos</param>
-        /// <returns>Training set valido para SOM</returns>
-        private double[][] generateTrainingSet(List<Pattern> patterns)
+        /// <returns>Input set valido para SOM</returns>
+        private double[][] generateInputSet(List<Pattern> patterns)
         {
-            double[][] trainingSet = new double[patterns.Count][];
+            double[][] inputSet = new double[patterns.Count][];
             for (int i = 0; i < patterns.Count; i++)
-                trainingSet[i] = patterns[i].ToList().Select(x => (double)x).ToArray();
+                inputSet[i] = generateInput(patterns[i]);
 
-            return trainingSet;
+            return inputSet;
+        }
+
+        /// <summary>
+        /// Genera un input valido para la SOM
+        /// </summary>
+        /// <param name="pattern">Patron a partir del cual se genera el input</param>
+        /// <returns>Input</returns>
+        private double[] generateInput(Pattern pattern)
+        {
+            return pattern.ToList().Select(x => (double)x).ToArray();
         }
         
         #endregion
