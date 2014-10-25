@@ -34,3 +34,44 @@ F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiRecogn
 F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.csproj.GenerateResource.Cache
 F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.exe
 F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.pdb
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.exe
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.pdb
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\bin\Release\KanjiRecognizer.exe
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\bin\Release\KanjiRecognizer.pdb
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\bin\Release\HopfieldNeuralNetwork.dll
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\bin\Release\ImageMagnifier.dll
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\bin\Release\HopfieldNeuralNetwork.pdb
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\bin\Release\ImageMagnifier.pdb
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.csprojResolveAssemblyReference.cache
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmCreateImage.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmFailRecog.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmShowKanji.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmAddNoise.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmCreanteNN.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmMain.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmTeachKanji.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.Properties.Resources.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmEditKanji.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.csproj.GenerateResource.Cache
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.exe
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.pdb
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\bin\Release\KanjiRecognizer.exe
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\bin\Release\KanjiRecognizer.pdb
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\bin\Release\HopfieldNeuralNetwork.dll
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\bin\Release\ImageMagnifier.dll
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\bin\Release\HopfieldNeuralNetwork.pdb
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\bin\Release\ImageMagnifier.pdb
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.csprojResolveAssemblyReference.cache
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmCreateImage.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmFailRecog.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmShowKanji.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmAddNoise.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmCreanteNN.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmMain.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmTeachKanji.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.Properties.Resources.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmEditKanji.resources
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.csproj.GenerateResource.Cache
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\bin\Release\AForge.dll
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\bin\Release\AForge.Neuro.dll
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\KanjiRecognizer\bin\Release\AForge.Neuro.xml

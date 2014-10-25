@@ -40,6 +40,12 @@
     <ApplicationIcon>Resources\RecognizeKanji.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>Referenced Assemblies\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Neuro">
+      <HintPath>Referenced Assemblies\AForge.Neuro.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -96,6 +102,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\CustomMath.cs" />
+    <Compile Include="Source\KohonenSOMAPI.cs" />
+    <Compile Include="Source\HopfieldAPI.cs" />
     <Compile Include="Source\ImageAPI.cs" />
     <Compile Include="Source\NeuralNetworkAPI.cs" />
     <Compile Include="Source\Kanji.cs" />
@@ -105,6 +114,7 @@
     <Compile Include="frmEditKanji.Designer.cs">
       <DependentUpon>frmEditKanji.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\Pattern.cs" />
     <EmbeddedResource Include="frmCreateImage.resx">
       <DependentUpon>frmCreateImage.cs</DependentUpon>
     </EmbeddedResource>
@@ -215,6 +225,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Pincel.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Referenced Assemblies\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

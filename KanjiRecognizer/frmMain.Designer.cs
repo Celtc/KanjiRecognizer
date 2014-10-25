@@ -33,11 +33,11 @@
             this.label_NN_state = new System.Windows.Forms.Label();
             this.label_NN_patterns_data = new System.Windows.Forms.Label();
             this.label_NN_nCount_data = new System.Windows.Forms.Label();
-            this.label_NN_energy_data = new System.Windows.Forms.Label();
+            this.label_NN_modelName_data = new System.Windows.Forms.Label();
             this.label_NN_state_data = new System.Windows.Forms.Label();
             this.label_NN_patterns = new System.Windows.Forms.Label();
             this.label_NN_nCount = new System.Windows.Forms.Label();
-            this.label_NN_energy = new System.Windows.Forms.Label();
+            this.label_NN_modelName = new System.Windows.Forms.Label();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.redNeuronalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createNNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,23 +54,31 @@
             this.button_edit = new System.Windows.Forms.Button();
             this.button_addNoise = new System.Windows.Forms.Button();
             this.openMultipleFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label_conf_method = new System.Windows.Forms.Label();
+            this.label_conf_threshold_data = new System.Windows.Forms.Label();
+            this.label_conf_method_data = new System.Windows.Forms.Label();
+            this.label_conf_threshold = new System.Windows.Forms.Label();
             this.groupBox_NN_Info.SuspendLayout();
             this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_loadedImage)).BeginInit();
             this.groupBox_loadedKanji.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox_NN_Info
             // 
+            this.groupBox_NN_Info.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox_NN_Info.Controls.Add(this.label_NN_state);
             this.groupBox_NN_Info.Controls.Add(this.label_NN_patterns_data);
             this.groupBox_NN_Info.Controls.Add(this.label_NN_nCount_data);
-            this.groupBox_NN_Info.Controls.Add(this.label_NN_energy_data);
+            this.groupBox_NN_Info.Controls.Add(this.label_NN_modelName_data);
             this.groupBox_NN_Info.Controls.Add(this.label_NN_state_data);
             this.groupBox_NN_Info.Controls.Add(this.label_NN_patterns);
             this.groupBox_NN_Info.Controls.Add(this.label_NN_nCount);
-            this.groupBox_NN_Info.Controls.Add(this.label_NN_energy);
+            this.groupBox_NN_Info.Controls.Add(this.label_NN_modelName);
             this.groupBox_NN_Info.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox_NN_Info.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox_NN_Info.Location = new System.Drawing.Point(25, 37);
             this.groupBox_NN_Info.Name = "groupBox_NN_Info";
             this.groupBox_NN_Info.Size = new System.Drawing.Size(355, 71);
@@ -108,15 +116,15 @@
             this.label_NN_nCount_data.Text = "status";
             this.label_NN_nCount_data.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // label_NN_energy_data
+            // label_NN_modelName_data
             // 
-            this.label_NN_energy_data.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label_NN_energy_data.Location = new System.Drawing.Point(262, 25);
-            this.label_NN_energy_data.Name = "label_NN_energy_data";
-            this.label_NN_energy_data.Size = new System.Drawing.Size(83, 13);
-            this.label_NN_energy_data.TabIndex = 8;
-            this.label_NN_energy_data.Text = "status";
-            this.label_NN_energy_data.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label_NN_modelName_data.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label_NN_modelName_data.Location = new System.Drawing.Point(262, 25);
+            this.label_NN_modelName_data.Name = "label_NN_modelName_data";
+            this.label_NN_modelName_data.Size = new System.Drawing.Size(83, 13);
+            this.label_NN_modelName_data.TabIndex = 8;
+            this.label_NN_modelName_data.Text = "status";
+            this.label_NN_modelName_data.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label_NN_state_data
             // 
@@ -148,15 +156,15 @@
             this.label_NN_nCount.TabIndex = 1;
             this.label_NN_nCount.Text = "N° de Neuronas:";
             // 
-            // label_NN_energy
+            // label_NN_modelName
             // 
-            this.label_NN_energy.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label_NN_energy.AutoSize = true;
-            this.label_NN_energy.Location = new System.Drawing.Point(187, 25);
-            this.label_NN_energy.Name = "label_NN_energy";
-            this.label_NN_energy.Size = new System.Drawing.Size(78, 13);
-            this.label_NN_energy.TabIndex = 6;
-            this.label_NN_energy.Text = "Energia actual:";
+            this.label_NN_modelName.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label_NN_modelName.AutoSize = true;
+            this.label_NN_modelName.Location = new System.Drawing.Point(187, 25);
+            this.label_NN_modelName.Name = "label_NN_modelName";
+            this.label_NN_modelName.Size = new System.Drawing.Size(45, 13);
+            this.label_NN_modelName.TabIndex = 6;
+            this.label_NN_modelName.Text = "Modelo:";
             // 
             // menuStrip
             // 
@@ -226,15 +234,15 @@
             // 
             // pictureBox_loadedImage
             // 
-            this.pictureBox_loadedImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox_loadedImage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox_loadedImage.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pictureBox_loadedImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox_loadedImage.Location = new System.Drawing.Point(6, 19);
             this.pictureBox_loadedImage.Name = "pictureBox_loadedImage";
-            this.pictureBox_loadedImage.Size = new System.Drawing.Size(262, 258);
-            this.pictureBox_loadedImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_loadedImage.Size = new System.Drawing.Size(258, 258);
+            this.pictureBox_loadedImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_loadedImage.TabIndex = 2;
             this.pictureBox_loadedImage.TabStop = false;
             // 
@@ -252,7 +260,7 @@
             // button_runDynamics
             // 
             this.button_runDynamics.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button_runDynamics.Location = new System.Drawing.Point(159, 412);
+            this.button_runDynamics.Location = new System.Drawing.Point(159, 467);
             this.button_runDynamics.Name = "button_runDynamics";
             this.button_runDynamics.Size = new System.Drawing.Size(82, 27);
             this.button_runDynamics.TabIndex = 4;
@@ -267,14 +275,14 @@
             // 
             // groupBox_loadedKanji
             // 
-            this.groupBox_loadedKanji.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox_loadedKanji.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_loadedKanji.Controls.Add(this.button_edit);
             this.groupBox_loadedKanji.Controls.Add(this.button_addNoise);
             this.groupBox_loadedKanji.Controls.Add(this.pictureBox_loadedImage);
             this.groupBox_loadedKanji.Controls.Add(this.button_loadImage);
-            this.groupBox_loadedKanji.Location = new System.Drawing.Point(25, 119);
+            this.groupBox_loadedKanji.Location = new System.Drawing.Point(25, 170);
             this.groupBox_loadedKanji.Name = "groupBox_loadedKanji";
             this.groupBox_loadedKanji.Size = new System.Drawing.Size(355, 283);
             this.groupBox_loadedKanji.TabIndex = 5;
@@ -283,6 +291,7 @@
             // 
             // button_edit
             // 
+            this.button_edit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_edit.Location = new System.Drawing.Point(274, 76);
             this.button_edit.Name = "button_edit";
             this.button_edit.Size = new System.Drawing.Size(75, 23);
@@ -293,6 +302,7 @@
             // 
             // button_addNoise
             // 
+            this.button_addNoise.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_addNoise.Location = new System.Drawing.Point(274, 47);
             this.button_addNoise.Name = "button_addNoise";
             this.button_addNoise.Size = new System.Drawing.Size(75, 23);
@@ -307,11 +317,66 @@
             this.openMultipleFileDialog.Filter = "Imagenes|*.jpg; *.png; *.bmp";
             this.openMultipleFileDialog.Multiselect = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label_conf_method);
+            this.groupBox1.Controls.Add(this.label_conf_threshold_data);
+            this.groupBox1.Controls.Add(this.label_conf_method_data);
+            this.groupBox1.Controls.Add(this.label_conf_threshold);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox1.Location = new System.Drawing.Point(25, 114);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(355, 50);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Configuración";
+            // 
+            // label_conf_method
+            // 
+            this.label_conf_method.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label_conf_method.AutoSize = true;
+            this.label_conf_method.Location = new System.Drawing.Point(14, 25);
+            this.label_conf_method.Name = "label_conf_method";
+            this.label_conf_method.Size = new System.Drawing.Size(46, 13);
+            this.label_conf_method.TabIndex = 0;
+            this.label_conf_method.Text = "Método:";
+            // 
+            // label_conf_threshold_data
+            // 
+            this.label_conf_threshold_data.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_conf_threshold_data.Location = new System.Drawing.Point(255, 25);
+            this.label_conf_threshold_data.Name = "label_conf_threshold_data";
+            this.label_conf_threshold_data.Size = new System.Drawing.Size(90, 13);
+            this.label_conf_threshold_data.TabIndex = 5;
+            this.label_conf_threshold_data.Text = "status";
+            this.label_conf_threshold_data.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label_conf_method_data
+            // 
+            this.label_conf_method_data.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label_conf_method_data.Location = new System.Drawing.Point(63, 25);
+            this.label_conf_method_data.Name = "label_conf_method_data";
+            this.label_conf_method_data.Size = new System.Drawing.Size(104, 13);
+            this.label_conf_method_data.TabIndex = 3;
+            this.label_conf_method_data.Text = "status";
+            this.label_conf_method_data.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label_conf_threshold
+            // 
+            this.label_conf_threshold.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label_conf_threshold.AutoSize = true;
+            this.label_conf_threshold.Location = new System.Drawing.Point(187, 25);
+            this.label_conf_threshold.Name = "label_conf_threshold";
+            this.label_conf_threshold.Size = new System.Drawing.Size(57, 13);
+            this.label_conf_threshold.TabIndex = 1;
+            this.label_conf_threshold.Text = "Threshold:";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 447);
+            this.ClientSize = new System.Drawing.Size(400, 502);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_loadedKanji);
             this.Controls.Add(this.button_runDynamics);
             this.Controls.Add(this.groupBox_NN_Info);
@@ -329,6 +394,8 @@
             this.menuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_loadedImage)).EndInit();
             this.groupBox_loadedKanji.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -354,12 +421,17 @@
         private System.Windows.Forms.ToolStripMenuItem teachKanjiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showLearnedToolStripMenuItem;
         private System.Windows.Forms.Label label_NN_patterns_data;
-        private System.Windows.Forms.Label label_NN_energy_data;
+        private System.Windows.Forms.Label label_NN_modelName_data;
         private System.Windows.Forms.Label label_NN_patterns;
-        private System.Windows.Forms.Label label_NN_energy;
+        private System.Windows.Forms.Label label_NN_modelName;
         private System.Windows.Forms.GroupBox groupBox_loadedKanji;
         private System.Windows.Forms.OpenFileDialog openMultipleFileDialog;
         private System.Windows.Forms.Button button_addNoise;
         private System.Windows.Forms.Button button_edit;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label_conf_method;
+        private System.Windows.Forms.Label label_conf_threshold_data;
+        private System.Windows.Forms.Label label_conf_method_data;
+        private System.Windows.Forms.Label label_conf_threshold;
     }
 }

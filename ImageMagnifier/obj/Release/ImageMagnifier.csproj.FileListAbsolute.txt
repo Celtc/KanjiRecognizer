@@ -6,3 +6,8 @@ F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiRecogn
 F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiRecognizer\ImageMagnifier\bin\Release\ImageMagnifier.pdb
 F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiRecognizer\ImageMagnifier\obj\Release\ImageMagnifier.dll
 F:\Carpetas de Usuario\Mis Documentos\Visual Studio 2010\Projects\C#\KanjiRecognizer\ImageMagnifier\obj\Release\ImageMagnifier.pdb
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\ImageMagnifier\bin\Release\ImageMagnifier.dll
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\ImageMagnifier\bin\Release\ImageMagnifier.pdb
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\ImageMagnifier\obj\Release\ImageMagnifier.csprojResolveAssemblyReference.cache
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\ImageMagnifier\obj\Release\ImageMagnifier.dll
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\ImageMagnifier\obj\Release\ImageMagnifier.pdb

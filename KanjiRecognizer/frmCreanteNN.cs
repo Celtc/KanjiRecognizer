@@ -74,8 +74,12 @@ namespace KanjiRecognizer
                 Enum.TryParse<HopfieldNeuralNetwork.UpdateSequence>(comboBox_updSequence.SelectedValue.ToString(), out updSequence); 
 
                 //Instancia y crea la red
-                var nnAPI = new NeuralNetworkAPI();
-                nnAPI.CreateNN(nCount, threshold, null, gMethod, updSequence);
+                var nnAPI = new HopfieldAPI();
+                nnAPI.SetInputSize(nCount);
+                nnAPI.SetThreshold(threshold);
+                nnAPI.SetMethod(gMethod);
+                nnAPI.SetUpdSequence(updSequence);
+                nnAPI.CreateANN();
 
                 this.ReturnNN = nnAPI;
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;

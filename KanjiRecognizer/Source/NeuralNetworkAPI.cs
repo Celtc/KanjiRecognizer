@@ -1,75 +1,124 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
 using System.Windows;
-
-using HopfieldNeuralNetwork;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing.Imaging;
 
 namespace KanjiRecognizer.Source
 {
-    public class NeuralNetworkAPI
+    public abstract class NeuralNetworkAPI
     {
+        #region Variables (privadas)
+
+        protected Dictionary<string, Kanji> learnedKanjis;
+
+        #endregion
+
+        #region Propiedas (publicas)
+
         /// <summary>
-        /// Enseña un patrón a la red, el cual será generado dependiendo el método elegido.
+        /// Nombre del modelo en cual se basa la RNA
         /// </summary>
-        /// <param name="sourceImage">Imagen del kanji a aprender</param>
-        /// <param name="name">Nombre del kanji</param>  
-        /// <param name="description">Descripción del kanji</param>  
-        public void TeachKanji(Image sourceImage, string name, string description)
+        public abstract string ModelName { get; }
+
+        /// <summary>
+        /// Informa si la red neuronal se encuentra creada
+        /// </summary>
+        public abstract bool IsNetworkCreated { get; }
+
+        public abstract int NeuronsCount { get; }
+
+        public virtual float Threshold { get; protected set; }
+
+        public virtual int InputSize { get; protected set; }
+
+        public virtual int SqrtInputSize { get; protected set; }
+
+        public virtual GenerationMethod Method { get; protected set; }
+
+        public virtual ReadOnlyCollection<Kanji> PatternsLearned { get { return learnedKanjis.Values.ToList().AsReadOnly(); } }
+
+        #endregion
+
+        #region Metodos Publicos
+
+        /// <summary>
+        /// Crea la red neuronal artificial.
+        /// </summary>
+        public virtual void CreateANN()
         {
-            this.TeachKanji(new Kanji(sourceImage, name, description));
+            if (InputSize == 0 || SqrtInputSize == 0 || Threshold == .0f)
+                throw new Exception("Parametros necesarios para la creación de la red no establecidos.");
+        }
+        
+        /// <summary>
+        /// Enseña una lista de patrones a la red, los cuales seran generados dependiendo el método elegido.
+        /// </summary>
+        /// <param name="kanjis">Lista de kanjis a aprender</param>
+        public abstract void TeachKanjis(List<Kanji> kanjis);
+
+        /// <summary>
+        /// Intenta reconocer la imagen dada comparandola contra algunos de los kanjis aprendidos.
+        /// En caso de reconocer la imagen, devuelve el kanji correspondiente, sino devuelve null.
+        /// </summary>
+        /// <param name="sourceImage">Imagen a reconocer</param>
+        /// <param name="resultBitmap">Imagen devuelta por la red luego del analisis</param>
+        public abstract Kanji RecognizeKanji(Image sourceImage, out Bitmap resultBitmap);
+
+        /// <summary>
+        /// Tamaño del input de la red (unidimensional)
+        /// </summary>
+        /// <param name="inputSize">Tamaño</param>
+        public virtual void SetInputSize(int inputSize)
+        {
+            InputSize = inputSize;
+            SqrtInputSize = (int)Math.Sqrt(inputSize);
         }
 
         /// <summary>
-        /// Enseña un patrón a la red, el cual será generado dependiendo el método elegido.
+        /// Establece el valor del threshold.
         /// </summary>
-        /// <param name="kanji">Kanji a aprender</param>
-        public void TeachKanji(Kanji kanji)
+        /// <param name="value">Nuevo valor</param>
+        public virtual void SetThreshold(float value)
         {
-            //Dependiendo del modo obj de aprendizaje genera el patron
-            string accessHash = string.Empty;
-            List<Neuron> pattern = null;
-            switch (generationMethod)
-            {
-                case GenerationMethod.Normal:
-                case GenerationMethod.Heightmap:
-                    generatePattern_Normal(kanji.sourceImage, out pattern, out accessHash);
-                    break;
-
-                case GenerationMethod.Hashing:
-                    generatePattern_Hashing(kanji.sourceImage, out pattern, out accessHash);
-                    break;
-            }
-            
-            //Revisa que no exisitiera el patron ya en la base de datos
-            if (!learnedKanjis.ContainsKey(accessHash))
-            {
-                //Guarda el nuevo kanji
-                learnedKanjis.Add(accessHash, kanji);
-
-                //Enseña el patron
-                NeuralNetwork.AddPattern(pattern);
-            }   
+            Threshold = value;
         }
 
+        /// <summary>
+        /// Establece el metodo de generacion de patrones.
+        /// No puede cambiarse una vez que se ha comenzado a enseñar a la red.
+        /// </summary>
+        /// <param name="method">Metodo a utilizar</param>
+        public virtual void SetMethod(GenerationMethod method)
+        {
+            if (IsNetworkCreated && PatternsLearned.Count > 0)
+                throw new ApplicationException("Imposible cambiar el metodo de generación de patrones una vez que ya ha comenzado a enseñarse a la red.");
+
+            Method = method;
+        }
+
+        #endregion
+
+        #region Metodos Privados
+                
         /// <summary>
         /// Genera el patrón a través del metodo habitual.
         /// </summary>
         /// <param name="sourceImage">Imagen a partir de la cual se generara el patrón</param>
         /// <param name="pattern">Patrón resultante</param>
         /// <param name="accesHash">Hash que identifica unívocamente este patrón</param>
-        private void generatePattern_Normal(Image sourceImage, out List<Neuron> pattern, out string accessHash)
+        protected virtual void generatePattern_Normal(Image sourceImage, out Pattern pattern, out string accessHash)
         {
             //Convierte la imagen a bitmap
             Bitmap sourceBitmap = ImageAPI.AlltoBMP(sourceImage);
 
             //Extrae el patron y su bitmap
             Bitmap processedBitmap;
-            pattern = patternFromBitmap(sourceBitmap, threshold, out processedBitmap);
+            pattern = patternFromBitmap(sourceBitmap, Threshold, out processedBitmap);
 
             //Genera el hash a partir del bitmap de salida
             accessHash = ImageAPI.GenerateSHA1HashFromImage(processedBitmap);
@@ -84,7 +133,7 @@ namespace KanjiRecognizer.Source
         /// <param name="pattern">Patrón resultante</param>
         /// <param name="heightmap">Heightmap del patrón generado</param>
         /// <param name="accesHash">Hash que identifica unívocamente este patrón</param>
-        private void generatePattern_Heightmap(Image sourceImage, out List<Neuron> pattern, out List<double> heightmap, out string accessHash)
+        protected virtual void generatePattern_Heightmap(Image sourceImage, out Pattern pattern, out List<double> heightmap, out string accessHash)
         {
             generatePattern_Normal(sourceImage, out pattern, out accessHash);
 
@@ -100,10 +149,10 @@ namespace KanjiRecognizer.Source
         /// <param name="sourceImage">Imagen a partir de la cual se generara el patrón</param>
         /// <param name="pattern">Patrón resultante</param>
         /// <param name="accesHash">Hash que identifica unívocamente este patrón</param>
-        private void generatePattern_Hashing(Image sourceImage, out List<Neuron> pattern, out string accessHash)
+        protected virtual void generatePattern_Hashing(Image sourceImage, out Pattern pattern, out string accessHash)
         {
             //Extrae un hash de tantos bits como neuronas a partir de la imagen
-            BitArray bitHash = ImageAPI.GenerateBitHashFromImage(sourceImage, NeuralNetwork.NeuronsCount);
+            BitArray bitHash = ImageAPI.GenerateBitHashFromImage(sourceImage, InputSize);
 
             //Extrae el patron y su bitmap
             Bitmap processedBitmap;
@@ -116,134 +165,40 @@ namespace KanjiRecognizer.Source
         }
 
         /// <summary>
-        /// Intenta reconocer la imagen dada comparandola contra algunos de los kanjis aprendidos.
-        /// En caso de reconocer la imagen, devuelve el kanji correspondiente, sino devuelve null.
-        /// </summary>
-        /// <param name="sourceImage">Imagen a reconocer</param>
-        /// <param name="iterations">Cantidad de intentos de reconocer la imagen</param>
-        /// <param name="resultBitmap">Imagen devuelta por la red luego del analisis</param>
-        public Kanji RecognizeKanji(Image sourceImage, out Bitmap resultBitmap)
-        {
-            //Dependiendo del modo obj de aprendizaje
-            List<double> heightmap = null;
-            List<Neuron> initialState = null;
-            string accessHash = string.Empty;
-            switch (generationMethod)
-            {
-                case GenerationMethod.Normal:
-                    generatePattern_Normal(sourceImage, out initialState, out accessHash);
-                    break;
-
-                case GenerationMethod.Hashing:
-                    generatePattern_Hashing(sourceImage, out initialState, out accessHash);
-                    break;
-
-                case GenerationMethod.Heightmap:
-                    generatePattern_Heightmap(sourceImage, out initialState, out heightmap, out accessHash);
-                    break;
-            }  
-            
-            //Diagnostica el patron
-            var returnedPattern = recognizePattern(initialState, heightmap);
-
-            //Busca si el resultado es un patron aprendido un minimo de energia local no esperado
-            //Para esto extrae el bitmap del patron resultante y lo busca en los aprendidos
-            resultBitmap = bitmapFromPattern(returnedPattern);
-            Kanji recognizedKanji = null;
-            try
-            {
-                string learnedHash = learnedKanjis.Keys.ElementAt(0);
-                string resultingHash = ImageAPI.GenerateSHA1HashFromImage(resultBitmap);
-                recognizedKanji = learnedKanjis[resultingHash];
-            }
-            catch { }
-
-            return recognizedKanji;
-        }
-        
-        /// <summary>
-        /// Diagnostica un patrón tantas veces como iteraciones se especifiquen.
-        /// Devuelve el patrón resultante.
-        /// </summary>
-        /// <param name="inPattern">Patrón inicial</param>
-        /// <param name="heightmap">Heightmap utilizado para el diagnostico, puede ser null</param>
-        /// <param name="iterations">Cantidad de intentos de reconocer la imagen</param>
-        private List<Neuron> recognizePattern(List<Neuron> inPattern, List<double> heightmap)
-        {
-            bool heightmapMethod = generationMethod == GenerationMethod.Heightmap;
-            List<Neuron> outPattern = inPattern;
-            List<Neuron> currentState;
-
-            do
-            {
-                NeuralNetwork.Run(outPattern, heightmap, updSequence);
-                currentState = NeuralNetwork.Neurons;
-                if (heightmapMethod && currentState == outPattern)
-                    break;
-                else
-                    outPattern = currentState;
-            } while (heightmapMethod);
-
-            return outPattern;
-        }
-
-        /// <summary>
-        /// Crea la red neuronal artificial con la cantidad de neuronas especificadas.
-        /// </summary>
-        /// <param name="neurons">Cantidad de neuronas con que sera creada la red</param>
-        /// <param name="energyHandle">Handler para el evento de cambio de energia del estado de la red</param>
-        /// <param name="method">Método que se utilizara para generar los patrones</param>
-        public void CreateNN(int neurons, float threshold, EnergyChangedHandler energyHandle = null, GenerationMethod method = GenerationMethod.Normal, UpdateSequence updSequence = UpdateSequence.PseudoRandom)
-        {
-            //Crea la red
-            NeuralNetwork = new NeuralNetwork(neurons);
-            if (energyHandle != null)
-                NeuralNetwork.EnergyChanged += new EnergyChangedHandler(energyHandle);
-
-            //Instancia las variables
-            this.learnedKanjis = new Dictionary<string, Kanji>();
-            this.generationMethod = method;
-            this.updSequence = updSequence;
-            this.threshold = threshold;
-        }
-
-        /// <summary>
         /// Extrae el patrón de una imagen, con la cantidad de componentes igual a la cantidad de neuronas en la red.
         /// </summary>
         /// <param name="sourceBitmap">Imagen a partir de la cual se extrae el patrón</param>
         /// <param name="activationValue">Valor utilizado para establer si un pixel es orientado o no en la matriz de pesos</param>
         /// <param name="outBitmap">Imagen resultante a partir de la cual se extrajo el patron</param>
-        private List<Neuron> patternFromBitmap(Bitmap sourceBitmap, float threshold, out Bitmap outBitmap)
+        protected virtual Pattern patternFromBitmap(Bitmap sourceBitmap, float threshold, out Bitmap outBitmap)
         {
             //El patron esta formado por un conjunto de estados de las neuronas
-            List<Neuron> pattern = new List<Neuron>(NeuralNetwork.NeuronsCount);
+            Pattern pattern = new Pattern((double)InputSize);
 
             //Escala la imagen para que tenga tanto pixeles como neuronas y la pasa a blanco y negro
-            sourceBitmap = ImageAPI.ResizeBitmap(sourceBitmap, sqrtNeuronsCount, sqrtNeuronsCount);            
+            sourceBitmap = ImageAPI.ResizeBitmap(sourceBitmap, SqrtInputSize, SqrtInputSize);
             sourceBitmap = ImageAPI.BitmapToMonochrome(sourceBitmap, threshold);
 
             //Establece los estados de las neuronas para cada pixel
-            for (int i = 0; i < sqrtNeuronsCount; i++)
+            for (int i = 0; i < SqrtInputSize; i++)
             {
-                for (int j = 0; j < sqrtNeuronsCount; j++) //La matriz es cuadrada
+                for (int j = 0; j < SqrtInputSize; j++) //La matriz es cuadrada
                 {
-                    Neuron neuron = new Neuron();
                     int pixelValue = Math.Abs(sourceBitmap.GetPixel(i, j).ToArgb());
                     if (pixelValue == 1)
                     {
                         sourceBitmap.SetPixel(i, j, Color.White);
-                        neuron.State = NeuronStates.AlongField;
+                        pattern[i, j] = 0;
                     }
                     else
                     {
                         sourceBitmap.SetPixel(i, j, Color.Black);
-                        neuron.State = NeuronStates.AgainstField;
+                        pattern[i, j] = 1;
                     }
-                    pattern.Add(neuron);
                 }
             }
             outBitmap = sourceBitmap;
-            
+
             return pattern;
         }
 
@@ -252,36 +207,34 @@ namespace KanjiRecognizer.Source
         /// </summary>
         /// <param name="sourceBitmap">Bithash a partir de la cual se extrae el patrón</param>
         /// <param name="outBitmap">Imagen resultante a partir de la cual se extrajo el patron</param>
-        private List<Neuron> patternFromBithash(BitArray bithash, out Bitmap outBitmap)
+        protected virtual Pattern patternFromBithash(BitArray bithash, out Bitmap outBitmap)
         {
             //Valida la cantidad de bits iniciales
-            if (bithash.Count < NeuralNetwork.NeuronsCount)
+            if (bithash.Count < InputSize)
             {
                 outBitmap = null;
                 return null;
             }
 
             //El patron esta formado por un conjunto de estados de las neuronas
-            List<Neuron> pattern = new List<Neuron>(NeuralNetwork.NeuronsCount);
+            Pattern pattern = new Pattern((double)InputSize);
 
             //Crea el bitmap que se devolvera
-            Bitmap processedBitmap = new Bitmap(sqrtNeuronsCount, sqrtNeuronsCount);
+            Bitmap processedBitmap = new Bitmap(SqrtInputSize, SqrtInputSize);
 
             //Establece los estados de las neuronas para cada bit
-            for (int i = 0; i < NeuralNetwork.NeuronsCount; i++)
+            for (int i = 0; i < InputSize; i++)
             {
-                Neuron neuron = new Neuron();
                 if (bithash.Get(i))
                 {
-                    processedBitmap.SetPixel(i / sqrtNeuronsCount, i % sqrtNeuronsCount, Color.Black);
-                    neuron.State = NeuronStates.AgainstField;
+                    processedBitmap.SetPixel(i / SqrtInputSize, i % SqrtInputSize, Color.Black);
+                    pattern[i] = 1;
                 }
                 else
                 {
-                    processedBitmap.SetPixel(i / sqrtNeuronsCount, i % sqrtNeuronsCount, Color.White);
-                    neuron.State = NeuronStates.AlongField;
+                    processedBitmap.SetPixel(i / SqrtInputSize, i % SqrtInputSize, Color.White);
+                    pattern[i] = 0;
                 }
-                pattern.Add(neuron);
             }
             outBitmap = processedBitmap;
             return pattern;
@@ -291,16 +244,14 @@ namespace KanjiRecognizer.Source
         /// Crea un bitmap a partir de un patrón. Esta será una imagen monocromo.
         /// </summary>
         /// <param name="pattern">Patrón utilizado para generar el bitmap</param>
-        private Bitmap bitmapFromPattern(List<Neuron> pattern)
+        protected virtual Bitmap bitmapFromPattern(Pattern pattern)
         {
-            Bitmap resultBitmap = new Bitmap(sqrtNeuronsCount, sqrtNeuronsCount);
+            Bitmap resultBitmap = new Bitmap(SqrtInputSize, SqrtInputSize);
             for (int i = 0; i < resultBitmap.Width; i++)
             {
                 for (int j = 0; j < resultBitmap.Height; j++)
                 {
-                    int currIndex = sqrtNeuronsCount * i + j;
-                    Neuron currNeuron = pattern[currIndex];
-                    if (currNeuron.State == NeuronStates.AgainstField)
+                    if (pattern[i, j] == 1)
                     {
                         resultBitmap.SetPixel(i, j, Color.Black);
                     }
@@ -317,7 +268,7 @@ namespace KanjiRecognizer.Source
         /// Calcula el heightmap a partir de un bitmap monocromo que representa el patrón relacionado.
         /// </summary>
         /// <param name="pattern">Bitmap a partir del cual se calculan las alturas</param>
-        private List<double> calculateHeightmap(Bitmap patternBitmap)
+        protected virtual List<double> calculateHeightmap(Bitmap patternBitmap)
         {
             int width = patternBitmap.Width;
             int height = patternBitmap.Height;
@@ -351,7 +302,7 @@ namespace KanjiRecognizer.Source
                         border = true;
 
                     if (border)
-                        heightmapMatrix[x, y] = activated? -1 : 1;
+                        heightmapMatrix[x, y] = activated ? -1 : 1;
                 }
 
             //Itero por cada pixel del bitmap y por nivel hasta calcular todas las alturas
@@ -411,14 +362,7 @@ namespace KanjiRecognizer.Source
             return heightmap;
         }
 
-        /// <summary>
-        /// Devuelve la raiz cuadrada de la cantidad de neuronas. Este valor será usado para saber
-        /// el ancho y alto de las imagenes cuadradas utilizadas luego para la extraccion de patrones.
-        /// </summary>
-        private int sqrtNeuronsCount 
-        {
-            get { return (int) Math.Sqrt(NeuralNetwork.NeuronsCount); }
-        }
+        #endregion
 
         //Modos de generación de patrones para el aprendizaje de los mismos
         public enum GenerationMethod
@@ -427,12 +371,5 @@ namespace KanjiRecognizer.Source
             Hashing = 1,
             Heightmap = 2
         }
-
-        //Variables
-        private Dictionary<string, Kanji> learnedKanjis;
-        public float threshold { get; private set; }
-        public NeuralNetwork NeuralNetwork { get; private set; }
-        public UpdateSequence updSequence { get; private set; }
-        public GenerationMethod generationMethod { get; private set; }
     }
 }
