@@ -78,3 +78,4 @@ F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer - copia\Ka
 F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\bin\Release\AForge.dll
 F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\bin\Release\AForge.Neuro.dll
 F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\bin\Release\AForge.Neuro.xml
+F:\Carpetas de Usuario\Mis Documentos\Programacion\C#\KanjiRecognizer\KanjiRecognizer\obj\x86\Release\KanjiRecognizer.frmProgress.resources

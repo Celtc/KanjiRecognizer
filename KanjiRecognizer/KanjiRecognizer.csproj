@@ -70,6 +70,12 @@
     <Compile Include="frmFailRecog.Designer.cs">
       <DependentUpon>frmFailRecog.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProgress.Designer.cs">
+      <DependentUpon>frmProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmShowKanji.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmFailRecog.resx">
       <DependentUpon>frmFailRecog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProgress.resx">
+      <DependentUpon>frmProgress.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmShowKanji.resx">
       <DependentUpon>frmShowKanji.cs</DependentUpon>

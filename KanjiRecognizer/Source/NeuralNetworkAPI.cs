@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing.Imaging;
+using System.ComponentModel;
 
 namespace KanjiRecognizer.Source
 {
@@ -15,6 +16,9 @@ namespace KanjiRecognizer.Source
         #region Variables (privadas)
 
         protected Dictionary<string, Kanji> learnedKanjis;
+        protected volatile bool needToStop;
+        protected BackgroundWorker backgroundTeachingWorker;
+        protected BackgroundWorker backgroundRecognizerWorker;
 
         #endregion
 
@@ -42,9 +46,38 @@ namespace KanjiRecognizer.Source
 
         public virtual ReadOnlyCollection<Kanji> PatternsLearned { get { return learnedKanjis.Values.ToList().AsReadOnly(); } }
 
+        public virtual int Progress { get; protected set; }
+
+        public delegate void ProgressChangedEventDelegate(float progress);
+        public virtual ProgressChangedEventDelegate ProgressChangedDelegate { get; protected set; }
+
+        public virtual Exception Error { get; protected set; }
+
         #endregion
 
         #region Metodos Publicos
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public NeuralNetworkAPI()
+        {
+            // Inicializa el worker de enseñanza
+            backgroundTeachingWorker = new BackgroundWorker();
+            backgroundTeachingWorker.DoWork += new DoWorkEventHandler(teachingWorker_DoWork);
+            backgroundTeachingWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_Completed);
+            backgroundTeachingWorker.ProgressChanged += new ProgressChangedEventHandler(worker_ProgressChanged);
+            backgroundTeachingWorker.WorkerReportsProgress = true;
+            backgroundTeachingWorker.WorkerSupportsCancellation = true;
+
+            // Inicializa el worker de reconocimiento
+            backgroundRecognizerWorker = new BackgroundWorker();
+            backgroundRecognizerWorker.DoWork += new DoWorkEventHandler(teachingWorker_DoWork);
+            backgroundRecognizerWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_Completed);
+            backgroundRecognizerWorker.ProgressChanged += new ProgressChangedEventHandler(worker_ProgressChanged);
+            backgroundRecognizerWorker.WorkerReportsProgress = true;
+            backgroundRecognizerWorker.WorkerSupportsCancellation = true;
+        }
 
         /// <summary>
         /// Crea la red neuronal artificial.
@@ -68,6 +101,14 @@ namespace KanjiRecognizer.Source
         /// <param name="sourceImage">Imagen a reconocer</param>
         /// <param name="resultBitmap">Imagen devuelta por la red luego del analisis</param>
         public abstract Kanji RecognizeKanji(Image sourceImage, out Bitmap resultBitmap);
+
+        /// <summary>
+        /// Activa la solicitud de parar cualquier actividad
+        /// </summary>
+        public virtual void Cancel()
+        {
+            needToStop = true;
+        }
 
         /// <summary>
         /// Tamaño del input de la red (unidimensional)
@@ -101,10 +142,70 @@ namespace KanjiRecognizer.Source
             Method = method;
         }
 
+        /// <summary>
+        /// Establece la acction a realizar en el evento de cambio de progreso
+        /// </summary>
+        /// <param name="action">Accion</param>
+        public virtual void RegisterProgressChangedDel(ProgressChangedEventDelegate del)
+        {
+            ProgressChangedDelegate = del;
+        }
+
+        /// <summary>
+        /// Limpia el delegado
+        /// </summary>
+        public virtual void ClearProgressChangedDel()
+        {
+            ProgressChangedDelegate = null;
+        }
+
         #endregion
 
         #region Metodos Privados
-                
+        
+        /// <summary>
+        /// Enseña patrones a la red en un hilo secundario.
+        /// </summary>
+        protected abstract void teachingWorker_DoWork(object sender, DoWorkEventArgs e);
+        
+        /// <summary>
+        /// Reconoce un patron en un hilo secundario.
+        /// </summary>
+        protected abstract void recognizerWorker_DoWork(object sender, DoWorkEventArgs e);
+        
+        /// <summary>
+        /// Evento de worker completado
+        /// </summary>
+        protected virtual void worker_Completed(object sender, RunWorkerCompletedEventArgs e)
+        {         
+            // Error Inesperado?
+            if (e.Error != null)
+            {
+                // Almacena la excepcion
+                Error = e.Error;
+            }
+
+            // En caso de cualquier error reinicia la red
+            if (Error != null)
+            {
+                // Limpia la red y diccionario
+                CreateANN();
+            }
+
+            // Progreso completo
+            worker_ProgressChanged(null, new ProgressChangedEventArgs(100, null));
+        }
+
+        /// <summary>
+        /// Modifica el progreso de la accion actual
+        /// </summary>
+        protected virtual void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            Progress = e.ProgressPercentage;
+            if (ProgressChangedDelegate != null)
+                ProgressChangedDelegate(e.ProgressPercentage);
+        }
+
         /// <summary>
         /// Genera el patrón a través del metodo habitual.
         /// </summary>

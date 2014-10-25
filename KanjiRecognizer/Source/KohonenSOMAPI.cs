@@ -2,11 +2,13 @@
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.ComponentModel;
 using System.Collections.Generic;
 
 using AForge;
 using AForge.Neuro;
 using AForge.Neuro.Learning;
+using System.Threading;
 
 namespace KanjiRecognizer.Source
 {
@@ -50,7 +52,7 @@ namespace KanjiRecognizer.Source
         #endregion
 
         #region Metodos Publicos
-
+        
         /// <summary>
         /// Crea la red neuronal artificial.
         /// </summary>
@@ -77,40 +79,11 @@ namespace KanjiRecognizer.Source
             // Recrea la red neuronal
             CreateANN();
 
-            // Genera una lista de patrones, una por cada kanji
-            var allPatterns = new List<Pattern>(allKanjis.Count);
-            foreach(var kanji in allKanjis)
-            {
-                //Dependiendo del modo obj de aprendizaje genera el patron
-                string imageHash = string.Empty;
-                Pattern pattern = null;
-                switch (Method)
-                {
-                    case GenerationMethod.Normal:
-                    case GenerationMethod.Heightmap:
-                        generatePattern_Normal(kanji.sourceImage, out pattern, out imageHash);
-                        break;
-
-                    case GenerationMethod.Hashing:
-                        generatePattern_Hashing(kanji.sourceImage, out pattern, out imageHash);
-                        break;
-                }
-
-                // Lo agrega a la lista de patrones a aprender
-                allPatterns.Add(pattern);
-            }
-
-            // Aprende los patrones
-            var classes = teachPatterns(allPatterns);
-            if (classes.GroupBy(i => i).Where(g => g.Count() > 1).ToList().Count > 0)
-                throw new Exception("No se pudo distinguir la diferencia de clase entre dos kanjis.");
-
-            // Para cada patron busca la neurona representante
-            for (int i = 0; i < allKanjis.Count; i++)
-            {
-                // Guarda el kanji en el diccionario
-                learnedKanjis.Add(classes[i].ToString(), allKanjis[i]);
-            }
+            // Comienza el worker
+            Error = null;
+            Progress = 0;
+            needToStop = false;
+            backgroundRecognizerWorker.RunWorkerAsync(allKanjis);            
         }
 
         /// <summary>
@@ -213,39 +186,87 @@ namespace KanjiRecognizer.Source
         #region Metodos Privados
 
         /// <summary>
-        /// Enseña un patron a la red. Devuelve una lista con el numero de neurona representante de cada uno
+        /// Enseña patrones a la red en un hilo secundario.
         /// </summary>
-        /// <param name="pattern">Patron a aprender</param>
-        /// <returns>Lista de ints que representan los numeros de neuronas representantes para cada clase o patron</returns>
-        private List<int> teachPatterns(List<Pattern> patterns)
+        protected override void teachingWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            // Extrae los kanjis
+            var allKanjis = (List<Kanji>)e.Argument;
+
+            // Genera una lista de patrones, una por cada kanji
+            var allPatterns = new List<Pattern>(allKanjis.Count);
+            foreach (var kanji in allKanjis)
+            {
+                //Dependiendo del modo obj de aprendizaje genera el patron
+                string imageHash = string.Empty;
+                Pattern pattern = null;
+                switch (Method)
+                {
+                    case GenerationMethod.Normal:
+                    case GenerationMethod.Heightmap:
+                        generatePattern_Normal(kanji.sourceImage, out pattern, out imageHash);
+                        break;
+
+                    case GenerationMethod.Hashing:
+                        generatePattern_Hashing(kanji.sourceImage, out pattern, out imageHash);
+                        break;
+                }
+
+                // Lo agrega a la lista de patrones a aprender
+                allPatterns.Add(pattern);
+            }
+
             // Crea un entrenador
             var sqrtOutputSize = (int)Math.Sqrt(OutputSize);
             SOMLearning trainer = new SOMLearning(somNN, sqrtOutputSize, sqrtOutputSize);
 
             // Crea el set de datos a entrenar
-            var trainingSet = generateInputSet(patterns);
+            var trainingSet = generateInputSet(allPatterns);
 
             // Iteraciones de aprendizaje
             for (int i = 0; i < LearningIterations; i++)
             {
                 // Establece los valores de aprendizaje y radio para la corrida actual
-                var completedRatio = i / (LearningIterations - 1);
+                var completedRatio = (float)i / (LearningIterations - 1);
                 trainer.LearningRate = completedRatio * LearningEndingRate + (1 - completedRatio) * LearningInitialRate;
                 trainer.LearningRadius = completedRatio * LearningEndingRadius + (1 - completedRatio) * LearningInitialRadius;
-                
+
                 // Ejecuta la corrida
                 trainer.RunEpoch(trainingSet);
+
+                // Informa progreso
+                ((BackgroundWorker)sender).ReportProgress((int)(completedRatio * 100 * .99f));
+
+                // Revisa la solicitud de cancelar
+                if (needToStop)
+                {
+                    e.Cancel = true;
+                    break;
+                }
             }
 
             // Genera la lista de clases para cada patron aprendido
-            var classes = new List<int>(patterns.Count);
-            foreach(var pattern in patterns)
-                classes.Add(classifyPattern(pattern));
+            var classes = new List<int>(allPatterns.Count);
+            foreach (var pattern in allPatterns) classes.Add(classifyPattern(pattern));
+            if (classes.GroupBy(i => i).Where(g => g.Count() > 1).ToList().Count > 0)
+                throw new Exception("No se pudo distinguir la diferencia de clase entre dos kanjis.");
 
-            return classes;
+            // Para cada patron busca la neurona representante
+            for (int i = 0; i < allKanjis.Count; i++)
+            {
+                // Guarda el kanji en el diccionario
+                learnedKanjis.Add(classes[i].ToString(), allKanjis[i]);
+            }
         }
 
+        /// <summary>
+        /// Reconoce un patron en un hilo secundario.
+        /// </summary>
+        protected override void recognizerWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+        
         /// <summary>
         /// Clasifica un patron devolviendo el numero de neurona mas cercano (menor distancia)
         /// </summary>

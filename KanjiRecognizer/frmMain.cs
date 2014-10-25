@@ -137,18 +137,27 @@ namespace KanjiRecognizer
                     }
                 }
 
+                // Si no se seleccionaron kanjis sale
+                if (kanjisToLearn.Count == 0) return;
+
                 // Aprende los kanjis
                 try
                 {
+                    // Comienza la accion de enseñanza
                     nnAPI.TeachKanjis(kanjisToLearn);
+
+                    // Muestra los avances
+                    using (var progressForm = new frmProgress(nnAPI))
+                    {
+                        var result = progressForm.ShowDialog();
+                        if (result == DialogResult.OK)
+                            this.updateDisplayData();
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Hubo un error al intenar aprender los kanjis.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-                // Actualiza el form
-                this.updateDisplayData();
             }
         }
 

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.ComponentModel;
 using System.Collections.Generic;
 
 using HopfieldNeuralNetwork;
@@ -59,34 +60,11 @@ namespace KanjiRecognizer.Source
         /// <param name="kanjis">Lista de kanjis a aprender</param>
         public override void TeachKanjis(List<Kanji> kanjis)
         {
-            // El aprendizaje de hopfield es unico por patron
-            foreach (var kanji in kanjis)
-            {
-                // Dependiendo del modo obj de aprendizaje genera el patron
-                string accessHash = string.Empty;
-                Pattern pattern = null;
-                switch (Method)
-                {
-                    case GenerationMethod.Normal:
-                    case GenerationMethod.Heightmap:
-                        generatePattern_Normal(kanji.sourceImage, out pattern, out accessHash);
-                        break;
-
-                    case GenerationMethod.Hashing:
-                        generatePattern_Hashing(kanji.sourceImage, out pattern, out accessHash);
-                        break;
-                }
-
-                // Revisa que no exisitiera el patron ya en la base de datos
-                if (!learnedKanjis.ContainsKey(accessHash))
-                {
-                    // Guarda el nuevo kanji
-                    learnedKanjis.Add(accessHash, kanji);
-
-                    // Enseña el patron
-                    teachPattern(pattern);
-                }
-            }
+            // Comienza el worker
+            Error = null;
+            Progress = 0;
+            needToStop = false;
+            backgroundRecognizerWorker.RunWorkerAsync(kanjis);  
         }
 
         /// <summary>
@@ -157,6 +135,66 @@ namespace KanjiRecognizer.Source
         #endregion
 
         #region Metodos Privados
+        
+        /// <summary>
+        /// Enseña patrones a la red en un hilo secundario.
+        /// </summary>
+        protected override void teachingWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            // Extrae los kanjis
+            var kanjis = (List<Kanji>)e.Argument;
+
+            // El aprendizaje de hopfield es unico por patron
+            for (int i = 0; i < kanjis.Count; i++)
+            {
+                // Kanji actual
+                var currKanji = kanjis[i];
+
+                // Dependiendo del modo obj de aprendizaje genera el patron
+                string accessHash = string.Empty;
+                Pattern pattern = null;
+                switch (Method)
+                {
+                    case GenerationMethod.Normal:
+                    case GenerationMethod.Heightmap:
+                        generatePattern_Normal(currKanji.sourceImage, out pattern, out accessHash);
+                        break;
+
+                    case GenerationMethod.Hashing:
+                        generatePattern_Hashing(currKanji.sourceImage, out pattern, out accessHash);
+                        break;
+                }
+
+                // Revisa que no exisitiera el patron ya en la base de datos
+                if (!learnedKanjis.ContainsKey(accessHash))
+                {
+                    // Guarda el nuevo kanji
+                    learnedKanjis.Add(accessHash, currKanji);
+
+                    // Enseña el patron
+                    teachPattern(pattern);
+                }
+
+                // Informa progreso
+                var completedRatio = (float)i / (kanjis.Count - 1);
+                ((BackgroundWorker)sender).ReportProgress((int)(completedRatio * 100 * .99f));
+
+                // Revisa la solicitud de cancelar
+                if (needToStop)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reconoce un patron en un hilo secundario.
+        /// </summary>
+        protected override void recognizerWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
 
         /// <summary>
         /// Enseña un patron a la red.
